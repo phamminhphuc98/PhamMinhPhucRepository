@@ -1,0 +1,83 @@
+﻿@model ShopCaPhe.Models.KHACHHANG
+@{
+    ViewBag.Title = "DeleteKH";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .btncreate {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    th {
+        background-color: #17aa67;
+        color: white;
+    }
+
+    table {
+        border: solid 1px white;
+    }
+
+    td {
+        background-color: white;
+    }
+
+    .table-bordered {
+        text-align: center;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4 style="font-family:serif;padding:10px">Xóa khách hàng</h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mã Khách Hàng</th>
+                <th>Tên Khách </th>
+                <th>Địa Chỉ</th>
+                <th>Điện Thoaị</th>
+                <th>Tên Đăng Nhập</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>Email</th>
+                <th>Loại Đăng Nhập</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>@Model.MaKH</td>
+                <td>@Model.HoTenKH</td>
+                <td>@Model.DiaChiKH</td>
+                <td>@Model.DienThoaiKH</td>
+                <td>@Model.TenDN</td>
+                <td>@Model.NgaySinh</td>
+                <td>@Model.GioiTinh</td>
+                <td>@Model.Email</td>
+                <td>@Model.LoaiDN</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function xoa() {
+            alert("Xóa thành công!");
+        }
+    </script>
+
+
+    <button type="button" style=" width:13%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">@ShopCaPhe.Language.Resource.iback</button> <input type="submit" style=" width:13%" class="btn btn-primary" value="Lưu" />
+
+
+}
+

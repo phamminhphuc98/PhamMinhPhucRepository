@@ -40,26 +40,16 @@
 
 
                     <div class="search-box">
-                        @*<div class="input-group">
 
-                                @using (Html.BeginForm("Index", "AdminCRUD", FormMethod.Get))
-                                {
-
-                                    @Html.TextBox("searchString", (string)ViewBag.searchValue, new { @class = "form-control", @placeholder = "Search" }) <input type="submit" value="Tìm kiếm" />
-                                }
-
-                            </div>*@
-
-                        <form action="/Admin/AdminCRUD/IndexAdmin" method="get" class="formsearch">
-                            <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-                            <input class="" id="searchString" name="searchString" placeholder="Search" type="search">
-                        </form>
-
+                            <form class="form-inline" style="margin-left:51%" action="/vi-vn/Admin/AdminCRUD/IndexAdmin" method="get" name="name">
+                                <input class="form-control mr-sm-2" type="search" placeholder="@ShopCaPhe.Language.Resource.isearch" aria-label="Search" name="searchString" required>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@ShopCaPhe.Language.Resource.isearch</button>
+                            </form>
                     </div>
 
                 </div>
             </div>
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>@ShopCaPhe.Language.Resource.iproductname</th>
@@ -100,7 +90,7 @@
                                     </a>
                                 </button>
                             </td>
-                           
+
                         </tr>
                     }
 

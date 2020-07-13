@@ -1,0 +1,131 @@
+﻿@using ShopCaPhe.Models
+@model List<TINTUC>
+@{
+    ViewBag.Title = "Createtintuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<link href="~/Content/CreateAll.css" rel="stylesheet" />
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+    .btncreate {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    .table_Menu td {
+        width: 100%;
+        display: block;
+        margin: 5px 0px;
+    }
+
+    th {
+        color: white;
+        background-color: #17aa67;
+    }
+</style>
+<script>
+    function validateCreate() {
+        var x = document.forms["myForm"]["AuthorName"].value;
+        var y = document.forms["myForm"]["History"].value;
+
+        if (x == "" || y == "") {
+            alert("Vui lòng điền đầy đủ thông tin sách trước khi tạo !");
+            return false;
+        }
+    }
+
+</script>
+<h4 style="font-family:serif">@ShopCaPhe.Language.Resource.imenu</h4>
+<hr />
+<div class="context">
+    <form action="/vi-vn/Admin/AdminCRUD/Createcode" method="post" name="myForm">
+        <div style="padding-left:4%" class="text_left_author">
+            <p style="font-weight:bold;font-size:20px; font-family:serif">Tạo mã code</p>
+            <input style="width:50%" type="text" name="Magiam" required placeholder="Mã Code" />
+            <input style="width:50%" type="text" name="GiaTri" required placeholder="Giá trị"/>
+            <input style="width:50%" type="text" name="soluong" required placeholder="Số lượng"/>
+            @if(Session["suc"] !=null)
+            {
+                     <div style="width:50%; margin-top:5px" class="alert alert-success" role="alert">
+          @Session["suc"]
+        </div>
+            }
+            else
+            {
+
+            }
+            <div>
+                <button type="button" style=" width:30%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">@ShopCaPhe.Language.Resource.iback</button> <input type="submit" style=" width:30%" class="btn btn-primary" value="Lưu" />
+            </div>
+        </div>
+        </form>
+        <form action="/vi-vn/Admin/AdminCRUD/Createtintuc" method="post" name="myForm">
+            <div class="text_left_author">
+                <p style="font-weight:bold;font-size:20px; font-family:serif">Thêm Tin tức-sự kiện</p>
+                <p>Nội dung</p>
+                <textarea name="NoiDung"></textarea>
+                <br />
+                <div>
+                    <input type="submit" style=" width:30%" class="btn btn-primary" value="Lưu" />
+                </div>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nội dung</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.MaTin</td>
+                        <td>@item.NoiDung</td>
+                        <td>
+                            <button type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                <a href="#">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                <a href="@Url.Action("Deletetintuc", "AdminCRUD", new { id = item.MaTin })">
+                                    <i class="material-icons">
+                                        close
+                                    </i>
+                                </a>
+                            </button>
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+        <div class="text_right_author">
+
+        </div>
+</div>
+</form>

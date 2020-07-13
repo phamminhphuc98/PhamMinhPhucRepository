@@ -1,0 +1,139 @@
+﻿@using ShopCaPhe.Models
+@model PagedList.IPagedList<ShopCaPhe.Models.KHACHHANG>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "CreateKhachHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
+<h2>Quản lý khách hàng</h2>
+
+
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+
+    table {
+        text-align: center;
+    }
+
+
+
+    th {
+        color: white;
+        background-color: #17aa67;
+    }
+
+    .table > tbody > tr > td {
+        border: 1px solid #d5d5d5;
+    }
+
+    .table > thead > tr > th {
+        border: 1px solid #d5d5d5;
+    }
+</style>
+<script>
+    function validateCreate() {
+        var x = document.forms["myForm"]["AuthorName"].value;
+        var y = document.forms["myForm"]["History"].value;
+
+        if (x == "" || y == "") {
+            alert("Vui lòng điền đầy đủ thông tin sách trước khi tạo !");
+            return false;
+        }
+    }
+
+</script>
+
+<form action="/vi-vn/Admin/AdminCRUD/CreateKhachHang" method="post" name="myForm" style="background-color:white;padding:10px 15px">
+    <div class="table-title">
+        <div class="row" style="padding-top:10px">
+            <div class="col-sm-4">
+
+                <div class="show-entries" style="visibility:hidden">
+                    @using (Html.BeginForm("CreateKhachHang", "AdminCRUD", FormMethod.Get))
+                    {
+                        <p>
+                            Show @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                            @Html.Hidden("page", (object)ViewBag.page)
+                            @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+                            @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+                            @Html.Hidden("searchString", (object)ViewBag.searchValue)
+                        </p>
+                    }
+                </div>
+            </div>
+
+
+            <div class="search-box">
+                <form class="form-inline" style="margin-left:51%" action="/vi-vn/Admin/AdminCRUD/CreateKhachHang" method="get" name="name">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchString" required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mã Khách Hàng</th>
+                <th>Tên Khách </th>
+                <th>Địa Chỉ</th>
+                <th>Điện Thoaị</th>
+                <th>Tên Đăng Nhập</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>Email</th>
+                <th>Loại Đăng Nhập</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.MaKH</td>
+                    <td>@item.HoTenKH</td>
+                    <td>@item.DiaChiKH</td>
+                    <td>@item.DienThoaiKH</td>
+                    <td>@item.TenDN</td>
+                    <td>@item.NgaySinh</td>
+                    <td>@item.GioiTinh</td>
+                    <td>@item.Email</td>
+                    <td>@item.LoaiDN</td>
+                    <td>
+                        <button type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                            <a href="@Url.Action("EditKH", "AdminCRUD", new { id = item.MaKH })">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </button>
+                        <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                            <a href="@Url.Action("DeleteKH", "AdminCRUD", new { id = item.MaKH })">
+                                <i class="material-icons">
+                                    close
+                                </i>
+                            </a>
+                        </button>
+                    </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+    <div class="clearfix">
+        <div class="hint-text">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) out of @Model.PageCount entries</div>
+        <ul class="pagination">
+
+            <li class="page-item">@Html.PagedListPager(Model, page => Url.Action("IndexAdmin", new { page, size = ViewBag.currentSize }))</li>
+
+        </ul>
+    </div>
+
+</form>

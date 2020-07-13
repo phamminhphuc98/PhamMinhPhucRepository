@@ -228,4 +228,13 @@
   <data name="ibillmanage" xml:space="preserve">
     <value>Quản lý hóa đơn</value>
   </data>
+  <data name="icustomer" xml:space="preserve">
+    <value>Quản lý khách hàng</value>
+  </data>
+  <data name="ievent" xml:space="preserve">
+    <value>Quản lý sự kiện-tin tức</value>
+  </data>
+  <data name="isearch" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
 </root>

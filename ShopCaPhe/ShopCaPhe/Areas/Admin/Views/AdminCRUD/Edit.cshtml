@@ -1,12 +1,20 @@
 ﻿@model ShopCaPhe.Models.SANPHAM
 @{
+    /**/
+
+    /**/
+
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<link href="~/Content/EditAdmins.css" rel="stylesheet" />
+<link href="~/Content/EditAdmins1.css" rel="stylesheet" />
 <style>
     .frmauthor {
         font-family: serif;
+    }
+
+    .form-control {
+        width: 50%;
     }
 
     .btncreate {
@@ -31,6 +39,7 @@
         color: white;
         background-color: #17aa67;
     }
+
     .editdropdown {
         color: #696969;
         font-size: 14px;
@@ -41,312 +50,131 @@
         border: 2px solid #ced4da;
         border-radius: 4px;
     }
+
+    form {
+        background-color: white;
+        padding: 15px 40px;
+    }
 </style>
-@*-------------------------------------*@
+
 @using (Html.BeginForm())
 {
 
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <h4 style="font-family:serif">@ShopCaPhe.Language.Resource.iedit</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaSP)
-
-
-        <!–---------------------------PHẦN ĐẦU------------------------------–>
-        <div class="all" style="font-family:serif">
-
-
-
-            @*<div class="text">
-                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
-            </div>
-
-
-
-            <div class="col-md-1 col-lg-2">
-                @Html.EditorFor(model => model.Donvitinh, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-                @Html.ValidationMessageFor(model => model.Donvitinh, "", new { @class = "text-danger" })
-            </div>*@
-
-
-
-            <!–---------------------------PHẦN HAI------------------------------–>
-
-
-            <div class="two" style="margin-top:0px">
-                <div class="infoBook">
-                    <label style="margin-top:6px; margin-left:10px">@ShopCaPhe.Language.Resource.idetailproduct</label>
-                </div>
-
-                <!–---------------------------ROW 2------------------------------–>
-                <div class="row2">
-
-                    <div class="col-md-3 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.iID</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-2">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                            @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-3 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.iproductname</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-2">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <!–---------------------------ROW 3------------------------------–>
-
-
-                <div class="row3">
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.isumary</label>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.iprice</label>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
-                </div>
-
-                <!–---------------------------ROW 4------------------------------–>
-
-                <div class="row4">
-
-
-
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.icreateday</label>
-                        </div>
-                    </div>
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <div class="input-group date">
-                                <input type="text" name="NgayTao" id="NgayTao" value="@Model.NgayTao" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.istatus</label>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <select class="dropdown editdropdown" name="trangthai">
-                                <option value="Đang Bán">@Model.TrangThai</option>
-                                <option value="Đang Bán">Đang Bán</option>
-                                <option value="Ngưng Bán">Ngưng Bán</option>
-                                <option value="Trưng Bày">Trưng Bày</option>
-                            </select>
-
-                            @*@Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })*@
-                        </div>
-                    </div>               
-                </div>
-
-                <!–---------------------------ROW 5------------------------------–>
-
-                <div class="row5">
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.iupdatedate</label>
-
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-
-                            <div class="input-group date">
-                                @Html.EditorFor(model => model.NgayChinhSua, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.iunit</label>
-
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-
-                            <div class="input-group date">
-                                <select class="dropdown editdropdown" name="DonviTinh" style="width:141%">
-                                    <option value="@Model.Donvitinh">@Model.Donvitinh</option>
-                                    <option value="Ký">Ký</option>
-                                    <option value="Hộp">Hộp</option>
-                                    <option value="Máy">Máy</option>
-                                    <option value="Túi">Túi</option>
-                                </select>
-                                @*@Html.EditorFor(model => model.Donvitinh, new { htmlAttributes = new { @class = "form-control"} })
-                    @Html.ValidationMessageFor(model => model.Donvitinh, "", new { @class = "text-danger" })*@
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-1 col-lg-2">
-                        <div class="form-group">
-
-                            <div class="input-group date">
-                                @Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-                                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!–---------------------------SUMMARY------------------------------–>
-                <div class="SMR">
-                    <div class="col-md-1 col-lg-12">
-                        <div class="form-group">
-                            <label class="control-label">@ShopCaPhe.Language.Resource.imota</label>
-                            <div class="area">
-                                @Html.TextAreaFor(model => model.MoTa, 10, 80, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!–---------------------------IMG------------------------------–>
-                <div class="img" style="height:435px">
-                    <div class="row6">
-                        <div class="col-md-1 col-lg-5">
-                            <div class="form-group">
-                                <label class="control-label">@ShopCaPhe.Language.Resource.iimg</label>
-                                @*<div class="choose">
-                                        @*Html.EditorFor(model => model.ImgUrl, new { htmlAttributes = new { @class = "form-control1", @id = "ima", @type = "file" } })
-                                    </div>*@
-                                @*<div class="form-group">
-
-                                        @Html.EditorFor(model => model.ImgUrl, new { htmlAttributes = new { @class = "form-control"} })
-                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                    </div>*@
-                                @*<div class="imgedit" style="background-color: white;width: 250px;padding: 40px 0px;">
-
-                                    </div>
-                                    <div class="textimg">
-                                        @Html.DisplayFor(model => model.ImgUrl)
-                                    </div>*@
-                                @section upload
-  {S
-                                    <script>
-                                        $(function () {
-                                            //đăng ký sự kiện click nút btnUpload
-                                            $('#btnUpload').click(function () {
-                                                $('#fileUpload').trigger('click');
-
-                                            });
-                                            // Bắt sự kiện change data của file Upload
-                                            $('#fileUpload').change(function () {
-                                                //Kiểm tra trình duyệt có hỗ trợ FormData object không.
-                                                if (window.FormData !== undefined) {
-                                                    //lấy dữ liệu trên fileUpload
-                                                    var fileUpload = $("#fileUpload").get(0);
-                                                    var files = fileUpload.files;
-                                                    //tạo đối tượng formdata
-                                                    var formData = new FormData();
-                                                    //đưa dữ liệu vào form
-                                                    formData.append('file', files[0]);
-                                                    $.ajax(
-                                                        {
-                                                            type: 'POST',
-                                                            url: '/AdminCRUD/UploadEdit',
-                                                            contentType: false,
-                                                            processData: false,
-                                                            data: formData,
-                                                            success: function (urlImage) {
-                                                                $('#pictureUpload').attr('src', "/Images/" + urlImage);
-                                                                $('#picture').val(urlImage);
-
-                                                            },
-                                                            error: function (err) {
-                                                                alert('co loi khi upload:' + err.statusText);
-                                                            }
-                                                        });
-
-                                                }
-                                            });
-                                        });
-                                    </script>
-
-                                }
-                                    <div class="from-inline">
-                                        @Html.EditorFor(model => model.HinhMinhHoa, new { htmlAttributes = new { @class = "form-control", id = "picture", name = "picture" } })
-                                        @Html.ValidationMessageFor(model => model.HinhMinhHoa, "", new { @class = "text-danger" })
-
-                                        <input type="text" name="picture" id="picture" style="display:none;" />
-                                        <input type="file" id="fileUpload" name="fileUpload" style="display:none;" />
-                                        <input type="button" id="btnUpload" value="@ShopCaPhe.Language.Resource.ichooseimg" class="btn_Choose" />
-                                    </div>
-                                <div class="imgEdit">
-                                    <img src="~/Images/@ViewBag.imgurl" width="250px" name="ImgUrl" id="pictureUpload" />
-                                </div>
-                            </div>
-                            <br />
-                            <br />
-                            <div class="from-inline">
-                                <input type="text" name="picture" id="picture" style="display:none;" />
-
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <a href="@Url.Action("IndexAdmin","AdminCRUD")" class="btncreate">@ShopCaPhe.Language.Resource.iback</a>
-
-                    <input type="submit" class="btncreate" style="width:130px; background-color:#17aa67" value="@ShopCaPhe.Language.Resource.isave" />
-
-                </div>
-            </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip01">Tên sản phẩm</label>
+            <input type="text" class="form-control" id="TenSP" name="TenSP" value="@Model.TenSP" required>
         </div>
-
-
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip02">Đơn giá</label>
+            <input type="number" class="form-control" id="DonGia" min="10000" max="100000000" name="DonGia" value="@Model.DonGia" required>
+        </div>
     </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Số lượng</label>
+            <input type="text" class="form-control" id="SoLuong" name="SoLuong" value="@Model.SoLuong" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Yêu thích</label>
+            <input type="text" class="form-control" id="YeuThich" min="0" name="YeuThich" value="@Model.YeuThich" required>
+        </div>
+    </div>
+    <hr />
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Đơn vị tính</label>
+            <select class="form-control" name="DonViTinh" required>
+                <option value="@Model.Donvitinh">@Model.Donvitinh</option>
+                <option value="Ký">Ký</option>
+                <option value="Hộp">Hộp</option>
+                <option value="Máy">Máy</option>
+                <option value="Túi">Túi</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Trạng thái</label>
+            <select class="form-control" name="TrangThai" required>
+                <option value="@Model.TrangThai">@Model.TrangThai</option>
+                <option value="Đang Bán">Đang Bán</option>
+                <option value="Ngưng Bán">Ngưng Bán</option>
+                <option value="Trưng Bày">Trưng Bày</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div class="form-row">
+        <textarea class="form-control"  id="exampleFormControlTextarea1" name="MoTa" rows="3" required maxlength="500">@Model.MoTa</textarea>
+    </div>
+    <hr />
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Hình ảnh</label>
+            <input type="text" class="form-control" id="picture" name="HinhMinhHoa" value="@Model.HinhMinhHoa" required>        <input type="button" id="btnUpload" value="@ShopCaPhe.Language.Resource.ichooseimg" class="btn_Choose" />
+        </div>
+        <input type="text" name="picture" id="picture" style="display:none;" />
+        <input type="file" id="fileUpload" name="fileUpload" style="display:none;" />
+    </div>
+
+
+
+    @section upload
+  {S
+        <script>
+            $(function () {
+                //đăng ký sự kiện click nút btnUpload
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+
+                });
+                // Bắt sự kiện change data của file Upload
+                $('#fileUpload').change(function () {
+                    //Kiểm tra trình duyệt có hỗ trợ FormData object không.
+                    if (window.FormData !== undefined) {
+                        //lấy dữ liệu trên fileUpload
+                        var fileUpload = $("#fileUpload").get(0);
+                        var files = fileUpload.files;
+                        //tạo đối tượng formdata
+                        var formData = new FormData();
+                        //đưa dữ liệu vào form
+                        formData.append('file', files[0]);
+                        $.ajax(
+                            {
+                                type: 'POST',
+                                url: '/AdminCRUD/UploadEdit',
+                                contentType: false,
+                                processData: false,
+                                data: formData,
+                                success: function (urlImage) {
+                                    $('#pictureUpload').attr('src', "/Images/" + urlImage);
+                                    $('#picture').val(urlImage);
+
+                                },
+                                error: function (err) {
+                                    alert('co loi khi upload:' + err.statusText);
+                                }
+                            });
+
+                    }
+                });
+            });
+        </script>
+
+    }
+
+    <div class="imgEdit">
+        <img src="~/Images/@ViewBag.imgurl" width="250px" name="ImgUrl" id="pictureUpload" />
+    </div>
+    <br />
+    <br />
+    <div class="from-inline">
+        <input type="text" name="picture" id="picture" style="display:none;" />
+    </div>
+    <input type="text" class="form-control" style="visibility:hidden" id="YeuThich" name="MaSP" value="@Model.MaSP" >
+    <input type="text" class="form-control" style="visibility:hidden" id="YeuThich" name="MaLoai" value="@Model.MaLoai" >
+    <input type="text" class="form-control" style="visibility:hidden" id="YeuThich" name="NgayTao" value="@Model.NgayTao" >
+
+    <button type="button" style="margin-top:-17%; width:13%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("IndexAdmin", "AdminCRUD")'">Quay về</button> <input type="submit" style="margin-top:-17%; width:13%" class="btn btn-primary" value="Lưu" />
+
 }

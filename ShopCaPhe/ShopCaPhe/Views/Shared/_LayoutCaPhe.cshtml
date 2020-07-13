@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,8 +12,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="BookManage.css">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
-    <link href="~/Content/Layout1.css" rel="stylesheet" />
+    <link href="~/Content/Layout.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     @*<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>*@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -30,9 +31,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="~/Scripts/numeral.js"></script>
-    <script src="~/Scripts/GioHang55.js"></script>
+    <script src="~/Scripts/GioHang1.js"></script>
     <script src="~/Scripts/Chitiet.js"></script>
-
     <script type="text/javascript">
 
         var gmap = new google.maps.LatLng(11.0282148, 106.6229131, 17);
@@ -106,7 +106,7 @@
 
     <style>
         .hide {
-            display:none;
+            display: none;
         }
 
         .fab {
@@ -118,19 +118,22 @@
             border-radius: 50%;
         }
 
-        .fab:hover {
-            font-size:58px;
-            width:80px;
-            transition:all .2s;
-
-        }
+            .fab:hover {
+                font-size: 58px;
+                width: 80px;
+                transition: all .2s;
+            }
 
         .fa-facebook-messenger {
             background: #3B5998;
             color: white;
         }
-
-
+        aside {
+            font-family: 'Roboto'
+        }
+        nav {
+            font-family: 'Roboto'
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -138,29 +141,29 @@
 
     <script>
         $(document).ready(function () {
-        if (localStorage.getItem("fbchatclose") == 1) {
+            if (localStorage.getItem("fbchatclose") == 1) {
 
-            jQuery('.fbchatbox').toggleClass('hide');
-
-            jQuery('#closefbchat').html('<i  class="fab fa-facebook-messenger"></i>').css({ 'bottom': 0, 'width': 87, 'background': 'none' });
-        }
-
-        setTimeout(function () {
-            $("#closefbchat").removeClass("hide");
-        }, 1000);
-
-
-        jQuery('#closefbchat').click(function () {
-            jQuery('.fbchatbox').toggleClass('hide');
-            if (jQuery('.fbchatbox').hasClass('hide')) {
-                localStorage.setItem("fbchatclose", 1);
+                jQuery('.fbchatbox').toggleClass('hide');
 
                 jQuery('#closefbchat').html('<i  class="fab fa-facebook-messenger"></i>').css({ 'bottom': 0, 'width': 87, 'background': 'none' });
             }
-            else {
-                localStorage.setItem("fbchatclose", 0);
-                jQuery('#closefbchat').text('x').css({ 'bottom': 270, 'width': 35, 'background':'red', 'padding':3 });
-            }
+
+            setTimeout(function () {
+                $("#closefbchat").removeClass("hide");
+            }, 1000);
+
+
+            jQuery('#closefbchat').click(function () {
+                jQuery('.fbchatbox').toggleClass('hide');
+                if (jQuery('.fbchatbox').hasClass('hide')) {
+                    localStorage.setItem("fbchatclose", 1);
+
+                    jQuery('#closefbchat').html('<i  class="fab fa-facebook-messenger"></i>').css({ 'bottom': 0, 'width': 87, 'background': 'none' });
+                }
+                else {
+                    localStorage.setItem("fbchatclose", 0);
+                    jQuery('#closefbchat').text('x').css({ 'bottom': 270, 'width': 35, 'background': 'red', 'padding': 3 });
+                }
             });
         });
     </script>
@@ -175,9 +178,6 @@
         <div class="topnav">
             <ul>
                 @Html.Action("Menu", "Menu")
-                <li>
-                    <a href="#" class=" ">En <i class='fas fa-angle-down'></i></a>
-                </li>
                 <li><a href="@Url.Action("IndexAdmin","vi-vn/Admin/AdminCRUD")">Admin</a></li>
                 <li>
                     <a href="/GioHang/GioHang" class="rightz">
@@ -189,9 +189,18 @@
                 {
                     if (User.Identity.IsAuthenticated)
                     {
-                        <li> <a href="@Url.Action("SignOut","Account")" class="rightz">Đăng Xuất</a></li>
-                        <li><a href="#" class="rightz">Hello @User.Identity.Name</a></li>
+                        int b = (int)Session["makh"];
 
+                        <li> <a href="@Url.Action("SignOut","Account")" class="rightz">Đăng Xuất</a></li>
+                        <li>
+                            <a href="#" class="rightz"><i class="fa fa-user"></i>@User.Identity.Name<i class='fas fa-angle-down'></a>
+                            <ol id="ol1" style="margin-left:42.7%" class="sub-content">
+                                <li class="" style="">
+                                    <a href="@Url.Action("EditUser","Home",new { id = b })" style="width:200px; padding:10px" class="sub-menu">Tài khoản của tôi</a>
+                                    <a href="@Url.Action("Donhangkhachhang","Home",new { id = b })" style="width:200px; padding:10px" class="sub-menu">Đơn hàng của tôi</a>
+                                </li>
+                            </ol>
+                        </li>
                     }
                     else
                     {
@@ -205,10 +214,19 @@
                 else
                 {
 
-                    if (Session["Email"] != null)
+                   if (Session["Email"] != null)
                     {
+                        int a = (int)Session["MaKH"];
                         <li> <a href="@Url.Action("DangXuat","Home")" class="rightz">Đăng Xuất</a></li>
-                        <li><a href="#" class="rightz">Hello @Session["Email"]</a></li>
+                        <li>
+                            <a  href="#" class="rightz"><i class="fa fa-user" f></i> @Session["Email"] <i class='fas fa-angle-down'></i></a> 
+                            <ol id="ol1" style="margin-left:42.7%" class="sub-content">
+                                    <li class="" style="">
+                                        <a href="@Url.Action("EditUser","Home",new { id = a })"  style="width:200px; padding:10px" class="sub-menu">Tài khoản của tôi</a>
+                                        <a href="@Url.Action("Donhangkhachhang","Home",new { id = a })" style="width:200px; padding:10px" class="sub-menu">Đơn hàng của tôi</a>
+                                    </li>
+                            </ol>
+                        </li>
 
 
                     }

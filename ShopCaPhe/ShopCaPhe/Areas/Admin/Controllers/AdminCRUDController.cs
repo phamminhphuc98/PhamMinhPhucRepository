@@ -32,25 +32,29 @@ namespace ShopCaPhe.Areas.Admin.Controllers
                 return request[methodInfo.Name] != null;
             }
         }
+        public ActionResult HomeAdmin()
+        {
+            return View();
+        }
         public ActionResult IndexAdmin()
         {
             if (Session["MaAdmin"] == null)
             {
                 RedirectToAction("LoginAdmin", "LoginAdmin");
             }
+            Session["suc"] = null;
             return View();
         }
         [HttpGet]
         public ActionResult IndexAdmin(int? size, string language, int? page, string sortProperty, string sortOrder, string searchString)
         {
+            Session["suc"] = null;
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-
             if (Session["MaAdmin"] == null)
             {
                return RedirectToAction("LoginAdmin", "LoginAdmin");
             }
-
             ViewBag.searchValue = searchString;
             ViewBag.sortProperty = sortProperty;
             ViewBag.page = page;
@@ -113,10 +117,7 @@ namespace ShopCaPhe.Areas.Admin.Controllers
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-
             ViewBag.imgurl = db.SANPHAMs.SingleOrDefault(n => n.MaSP == id).HinhMinhHoa;
-            // List<Category> lis = db.Categories.ToList();
-
             SANPHAM sp = db.SANPHAMs.Find(id);
             return View(sp);
 
@@ -124,7 +125,7 @@ namespace ShopCaPhe.Areas.Admin.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,TenSP,MaLoai,Donvitinh,DonGia,MoTa,HinhMinhHoa,NgayTao,NgayChinhSua,TrangThai,SoLuong")] SANPHAM sp)
+        public ActionResult Edit([Bind(Include = "MaSP,TenSP,MaLoai,Donvitinh,DonGia,MoTa,HinhMinhHoa,NgayTao,NgayChinhSua,TrangThai,SoLuong,YeuThich")] SANPHAM sp)
         {   
             if (ModelState.IsValid)
             {
@@ -154,7 +155,8 @@ namespace ShopCaPhe.Areas.Admin.Controllers
 
             if (user.TrangThai=="Đang Bán")
             {
-                Response.Write("<script>alert('Sản phẩm không xóa được vì vẫn đang được bán');</script>");
+                Response.Write("<script>alert('Loại sản phẩm không xóa được vì chứa nhiều sản phẩm đang được bán');</script>");
+
                 return View();
             }
             else
@@ -206,6 +208,116 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             ViewBag.Loai = ListLoai;
             return View();
         }
+
+        public ActionResult CreateKhachHang(string language)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+            List<KHACHHANG> kh = db.KHACHHANGs.ToList();
+            return View(kh);
+        }
+        [HttpGet]
+        public ActionResult CreateKhachHang(int? size, string language, int? page, string sortProperty, string sortOrder, string searchString)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+            if (Session["MaAdmin"] == null)
+            {
+                return RedirectToAction("LoginAdmin", "LoginAdmin");
+            }
+
+            ViewBag.searchValue = searchString;
+            ViewBag.sortProperty = sortProperty;
+            ViewBag.page = page;
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "5", Value = "5" });
+            items.Add(new SelectListItem { Text = "10", Value = "10" });
+            items.Add(new SelectListItem { Text = "20", Value = "20" });
+            items.Add(new SelectListItem { Text = "25", Value = "25" });
+
+            foreach (var item in items)
+            {
+                if (item.Value == size.ToString()) item.Selected = true;
+            }
+            ViewBag.size = items;
+            ViewBag.currentSize = size;
+
+            var links = from l in db.KHACHHANGs select l;
+            // 5. T?o thu?c tính s?p x?p m?c d?nh là "LinkID"
+            if (String.IsNullOrEmpty(sortProperty)) sortProperty = "BookId";
+
+            // 5. S?p x?p tang/gi?m b?ng phuong th?c OrderBy s? d?ng trong thu vi?n Dynamic LINQ
+            if (sortOrder == "desc") links = links.OrderBy(sortProperty + " desc");
+            else if (sortOrder == "asc") links = links.OrderBy(sortProperty);
+            else links = links.OrderBy("HoTenKH");
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                links = links.Where(s => s.HoTenKH.Contains(searchString));
+            }
+
+            page = page ?? 1;
+
+
+            int pageSize = (size ?? 5);
+
+            ViewBag.pageSize = pageSize;
+
+            // 6. Toán t? ?? trong C# mô t? n?u page khác null thì l?y giá tr? page, còn
+            // n?u page = null thì l?y giá tr? 1 cho bi?n pageNumber. --- dammio.com
+            int pageNumber = (page ?? 1);
+
+            // 6.2 L?y t?ng s? record chia cho kích thu?c d? bi?t bao nhiêu trang
+            int checkTotal = (int)(links.ToList().Count / pageSize) + 1;
+            // N?u trang vu?t qua t?ng s? trang thì thi?t l?p là 1 ho?c t?ng s? trang
+            if (pageNumber > checkTotal) pageNumber = checkTotal;
+
+            return View(links.ToPagedList(pageNumber, pageSize));
+
+        }
+
+        public ActionResult EditKH(int? id, string language)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+            // List<Category> lis = db.Categories.ToList();
+
+            KHACHHANG kh = db.KHACHHANGs.Find(id);
+            return View(kh);
+
+        }
+        public ActionResult DeleteKH(int? id)
+        {
+            KHACHHANG kh = db.KHACHHANGs.Find(id);
+            return View(kh);
+        }
+        [HttpPost, ActionName("DeleteKH")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteKH(int id)
+        {
+
+            KHACHHANG mn = db.KHACHHANGs.Find(id);
+            db.KHACHHANGs.Remove(mn);
+            db.SaveChanges();
+            return RedirectToAction("CreateKhachHang");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditKH([Bind(Include = "MaKH,HoTenKH,DiaChiKH,DienThoaiKH,TenDN,MatKhau,NgaySinh,GioiTinh,Email,LoaiDN")] KHACHHANG kh)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(kh).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CreateKhachHang");
+            }
+            return View(kh);
+        }
         public string ProcessUpload(HttpPostedFileBase file)
         {
             //xử lí upload
@@ -231,8 +343,6 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             sp.TenSP = frmTao["name"];
             sp.MoTa = frmTao["mota"];
             sp.MaLoai = Convert.ToInt32(frmTao["Loai"]);
-            //Book.AuthorId = Convert.ToInt32(frmTao["author"]);
-            //Book.PubId = Convert.ToInt32(frmTao["pub"]);
             sp.DonGia = Convert.ToInt32(frmTao["gia"]);
             sp.SoLuong = Convert.ToInt32(frmTao["SL"]);
             sp.TrangThai = frmTao["trangthai"];
@@ -243,17 +353,6 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("IndexAdmin", "AdminCRUD");
         }
-
-        //    public ActionResult ChitietBookAdmin(int? BookId)
-        //    {
-        //        //  Book s = db.Books.Single(n => n.BookId == id);
-        //        SANPHAM b = (from p in db.SANPHAMs where p.MaSP == BookId select p).ToArray()[0];
-
-        //        return View(b);
-        //    }
-
-        //    
-        //  
 
         public ActionResult createLoaiSP(string language)
         {
@@ -275,42 +374,39 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("createLoaiSP", "AdminCRUD");
         }
-        //    public ActionResult createPub()
-        //    {
-        //        var f = from s in db.Publishers select s;
-        //        ViewBag.sklist = db.Publishers.ToList();
-        //        return View();
 
-        //    }
-        //    [HttpPost]
-        //    public ActionResult createPub(FormCollection frmCreate, Publisher p)
-        //    {
+        public ActionResult Createtintuc()
+        {
+            List<TINTUC> mn = db.TINTUCs.ToList();
+            return View(mn); 
 
-        //        p.Name = frmCreate["Name"];
-        //        p.Description = frmCreate["Description"];
+        }
+        [HttpPost]
+        public ActionResult Createtintuc(FormCollection frmCreate, TINTUC mn)
+        {
+            mn.NoiDung = frmCreate["NoiDung"];
+            db.TINTUCs.Add(mn);
+            db.SaveChanges();
+            return RedirectToAction("Createtintuc", "AdminCRUD");
+        }
+        [HttpPost]
+        public ActionResult Createcode(FormCollection frmCreate, MaGiamGia mn)
+        {
+            mn.Magiam = frmCreate["Magiam"];
+            mn.GiaTri = int.Parse(frmCreate["GiaTri"].ToString());
+            mn.soluong = int.Parse(frmCreate["soluong"].ToString());
+            db.MaGiamGias.Add(mn);
+            db.SaveChanges();
+            Session["suc"] = "Tạo mã thành công!";
+            return RedirectToAction("Createtintuc", "AdminCRUD");
+        }
+        public ActionResult Deletetintuc(int id)
+        {
 
-        //        db.Publishers.Add(p);
-        //        db.SaveChanges();
-        //        return RedirectToAction("createPub", "AdminCRUD");
-        //    }
-        //    public ActionResult createCate()
-        //    {
-        //        var f = from s in db.Categories select s;
-        //        ViewBag.sklist = db.Categories.ToList();
-        //        return View();
-
-        //    }
-        //    [HttpPost]
-        //    public ActionResult createCate(FormCollection frmCreate, Category c)
-        //    {
-
-        //        c.CateName = frmCreate["CateName"];
-        //        c.Description = frmCreate["Description"];
-
-        //        db.Categories.Add(c);
-        //        db.SaveChanges();
-        //        return RedirectToAction("createCate", "AdminCRUD");
-        //    }
-        //}
+            TINTUC mn = db.TINTUCs.Find(id);
+            db.TINTUCs.Remove(mn);
+            db.SaveChanges();
+            return RedirectToAction("Createtintuc");
+        }
     }
 }

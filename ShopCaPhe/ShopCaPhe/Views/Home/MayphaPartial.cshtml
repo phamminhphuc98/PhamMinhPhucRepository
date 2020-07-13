@@ -10,25 +10,52 @@
         @foreach (var item in Model)
         {
             //i++;
-            <div id="sanpham">
-                <div id="anhbia"><img src="~/Images/@item.HinhMinhHoa" /></div>
-                <div id="tensach">@item.TenSP</div>
-                <div id="tieude">
-                    @item.LOAISP.TenLoai
+        <div id="sanpham">
+            @if (item.YeuThich >= ViewBag.sum * 10 / 100)
+            {
+                <div class="arrow-up" style="border-top: 90px solid #ff6461;">
+                    <div class="inside" style="position:relative;">
+                        <span>Bán chạy</span>
+                    </div>
                 </div>
-                <div class="price">
-                    <span id="agia">@string.Format("{0:0,0}", item.DonGia)đ</span>
 
-                </div>
-                <div class="tooltip-content">
-                    <ul>
-                        <li class="tooltip-li li1"><a id="txtmua" onclick="DatHang(@item.MaSP)"><i class="fa fa-shopping-basket"></i></a></li>
-                        <li class="tooltip-li li2"><a id="myBtn" onclick="Poppup(@item.MaSP)"><i class="fa fa-exchange"></i></a></li>
-                        <li class="tooltip-li li3"><a href="~/ViewSP/ChiTietSanPham?MaSP=@item.MaSP"><i class="fa fa-eye" style="color:black"></i></a></li>
-                    </ul>
+            }
+            else if (item.YeuThich >= ViewBag.sum * 8 / 100)
+            {
 
+                <div class="arrow-up" style="border-top: 90px solid #2ab989;">
+                    <div class="inside" style="position:relative;top: -85px;left: -39px;">
+                        <span><img width="100%" style="width:25px" src="~/Images/flat.png" />HOT</span>
+                    </div>
                 </div>
+
+            }
+            else if (item.YeuThich == 0)
+            {
+                <div class="arrow-up" style="border-top: 90px solid #00bcd4;">
+                    <div class="inside" style="position:relative;top: -73px;left: -45px;">
+                        <span>NEW</span>
+                    </div>
+                </div>
+            }
+            <div id="anhbia"><img src="~/Images/@item.HinhMinhHoa" /></div>
+            <div id="tensach">@item.TenSP</div>
+            <div id="tieude">
+                @item.LOAISP.TenLoai
             </div>
+            <div class="price">
+                <span id="agia">@string.Format("{0:0,0}", item.DonGia)đ</span>
+
+            </div>
+            <div class="tooltip-content">
+                <ul>
+                    <li class="tooltip-li li1"><a id="txtmua" onclick="DatHang(@item.MaSP)"><i class="fa fa-shopping-basket"></i></a></li>
+                    <li class="tooltip-li li2"><a id="myBtn" onclick="Poppup(@item.MaSP)"><i class="fa fa-exchange"></i></a></li>
+                    <li class="tooltip-li li3"><a href="~/ViewSP/ChiTietSanPham?MaSP=@item.MaSP&Maloai=@item.MaLoai"><i class="fa fa-eye" style="color:black"></i></a></li>
+                </ul>
+
+            </div>
+        </div>
             <div id="myModal" class="modal">
                 Modal content
                 <div class="modal-content">

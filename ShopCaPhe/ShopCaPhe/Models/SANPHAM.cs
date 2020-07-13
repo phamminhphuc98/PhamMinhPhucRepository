@@ -33,6 +33,7 @@ namespace ShopCaPhe.Models
         public Nullable<System.DateTime> NgayChinhSua { get; set; }
         public string TrangThai { get; set; }
         public Nullable<int> SoLuong { get; set; }
+        public Nullable<int> YeuThich { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDONHANG> CTDONHANGs { get; set; }

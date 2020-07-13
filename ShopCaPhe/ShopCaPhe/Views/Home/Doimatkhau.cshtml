@@ -1,0 +1,70 @@
+﻿@model ShopCaPhe.Models.KHACHHANG
+@{
+    ViewBag.Title = "Doimatkhau";
+    Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
+}
+<link href="~/Content/EditUser1.css" rel="stylesheet" />
+<style>
+    input[type=text] {
+        color: black;
+    }
+</style>
+<style>
+    #exampleInputPassword1 {
+        width: 100%;
+    }
+
+    .btncreate {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+</style>
+
+<div class="form-style-5" style="height:500px; border:solid 1px black">
+    <form action="/Home/Doimatkhau" method="post" name="myForm">
+        <h3 style="margin:0 7%">Cập nhập mật khẩu</h3>
+        <br />
+
+        <fieldset>
+            <label for="job">Mật khẩu cũ</label>
+            <input type="password" name="MatKhauCu" class="form-control" id="exampleInputEmail1" style="width:100%; color:black" aria-describedby="emailHelp" value="" required>
+            @if (ViewBag.mess1 != null)
+            {
+                <div  style="margin-top:3px" class="alert alert-danger" role="alert">
+                    @ViewBag.mess1
+                </div>
+            }
+            else
+            {
+
+            }
+
+            <label for="job">Mật khẩu mới</label>
+            <input type="password" name="MatKhauMoi" class="form-control" id="exampleInputEmail1" style="width:100%; color:black" aria-describedby="emailHelp" value="" required>
+            <label for="job">Nhập lại mật khẩu</label>
+            <input type="password" name="NhapLaiMatKhau" class="form-control" id="exampleInputEmail1" style="width:100%; color:black" aria-describedby="emailHelp" value="" required>
+            @if (ViewBag.mess2 != null)
+            {
+                <div style="margin-top:3px" class="alert alert-danger" role="alert">
+                    @ViewBag.mess2
+                </div>
+            }
+            else
+            {
+
+            }
+
+        </fieldset>
+        <input style="width:50%" type="submit" value="Lưu" />
+
+    </form>
+</div>

@@ -20,7 +20,7 @@ namespace ShopCaPhe.Controllers
             return View(sp);
 
         }
-        public ActionResult ChiTietSanPham(int? MaSP)
+        public ActionResult ChiTietSanPham(int? MaSP, int? MaLoai)
         {
             //if (Session["username"] == null)
             //{
@@ -47,10 +47,13 @@ namespace ShopCaPhe.Controllers
                 else
                 {
                     var countdg = db.DANHGIASANPHAMs.Where(x => x.MaSP == MaSP).Count();
+                    
                     List<DANHGIASANPHAM> DG = db.DANHGIASANPHAMs.Where(n => n.MaSP == MaSP).OrderByDescending(n => n.MaDG).ToList();
+                    List<SANPHAM> sp = db.SANPHAMs.Where(n => n.MaLoai == MaLoai).Take(5).ToList();
                     ViewData["listDG"] = DG;
                     Session["CountDG"] = countdg;
-                    return View(db.SANPHAMs.SingleOrDefault(n => n.MaSP == MaSP));
+                     ViewData["lstSP"] = sp;
+                return View(db.SANPHAMs.SingleOrDefault(n => n.MaSP == MaSP));
                 }
             //}
 

@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using Microsoft.Owin;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace ShopCaPhe.Controllers
 {
@@ -37,37 +39,45 @@ namespace ShopCaPhe.Controllers
             using (db)
             {
 
+                string b = GetMD5(model.MatKhau);
                 //Lấy username và password ở bản ghi đầu tiên
-                var user = db.KHACHHANGs.Where(x => x.TenDN == model.TenDN && x.MatKhau == model.MatKhau).FirstOrDefault();
+                var user = db.KHACHHANGs.Where(x => x.TenDN == model.TenDN && x.MatKhau == b).FirstOrDefault();
                 if (user == null)
                 {
 
-                    ViewBag.error = "Email or Password is fail";
+                    ViewBag.error = "Tên đăng nhập hoặc mật khẩu không đúng";
                     return View("LoginSSO", model);
                 }
                 else
                 {
-                    //ViewBag.avatar = user.Avatar;
-                    //ViewBag.Online = user.IsActive;
-                    //Session["Online"] = user.IsActive;
-                    //Session["Avatar"] = user.Avatar;
                     Session["MaKH"] = user.MaKH;
                     Session["Email"] = user.TenDN;
                     Session["Password"] = user.MatKhau;
-                    //return View(user)
-
                     return RedirectToAction("Index", "Home");
                 }
 
             }
         }
+        public static string GetMD5(string MD5)
+        {
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(MD5);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
         public ActionResult SignOut()
         {
             HttpContext.GetOwinContext().Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             Session["username"] = null;
             Session["makh"] = null;
             Session["GioHang"] = null;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index","Home");
         }
 
         [AllowAnonymous]

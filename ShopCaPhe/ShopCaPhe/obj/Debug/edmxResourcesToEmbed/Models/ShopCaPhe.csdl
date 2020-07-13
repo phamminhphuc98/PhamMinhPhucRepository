@@ -75,9 +75,13 @@
     <Property Name="DienThoaiNhan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="MaHTTT" Type="Int32" />
     <Property Name="MaHTGH" Type="Int32" />
+    <Property Name="EmailNhanHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDMaGiam" Type="Int32" />
+    <Property Name="MaGiam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_CTDONHANG_DONDATHANG" FromRole="DONDATHANG" ToRole="CTDONHANG" />
     <NavigationProperty Name="HINHTHUCGIAOHANG" Relationship="Self.FK_DONDATHANG_HINHTHUCGIAOHANG" FromRole="DONDATHANG" ToRole="HINHTHUCGIAOHANG" />
     <NavigationProperty Name="HINHTHUCTHANHTOAN" Relationship="Self.FK_DONDATHANG_HINHTHUCTHANHTOAN" FromRole="DONDATHANG" ToRole="HINHTHUCTHANHTOAN" />
+    <NavigationProperty Name="MaGiamGia" Relationship="Self.FK_DONDATHANG_MaGiamGia" FromRole="DONDATHANG" ToRole="MaGiamGia" />
   </EntityType>
   <EntityType Name="HINHTHUCGIAOHANG">
     <Key>
@@ -108,6 +112,7 @@
     <Property Name="NgaySinh" Type="DateTime" Precision="0" />
     <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoaiDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DANHGIASANPHAMs" Relationship="Self.FK_DANHGIASANPHAM_KHACHHANG" FromRole="KHACHHANG" ToRole="DANHGIASANPHAM" />
   </EntityType>
   <EntityType Name="LOAISP">
@@ -117,6 +122,17 @@
     <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_LOAISP" FromRole="LOAISP" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="MaGiamGia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Magiam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GiaTri" Type="Int32" />
+    <Property Name="Ngayhethan" Type="DateTime" Precision="0" />
+    <Property Name="soluong" Type="Int32" />
+    <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHANG_MaGiamGia" FromRole="MaGiamGia" ToRole="DONDATHANG" />
   </EntityType>
   <EntityType Name="MENU">
     <Key>
@@ -163,6 +179,7 @@
     <Property Name="NgayChinhSua" Type="DateTime" Precision="3" />
     <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SoLuong" Type="Int32" />
+    <Property Name="YeuThich" Type="Int32" />
     <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_CTDONHANG_SANPHAM" FromRole="SANPHAM" ToRole="CTDONHANG" />
     <NavigationProperty Name="CTPHIEUNHAPs" Relationship="Self.FK_CTPHIEUNHAP_SANPHAM" FromRole="SANPHAM" ToRole="CTPHIEUNHAP" />
     <NavigationProperty Name="DANHGIASANPHAMs" Relationship="Self.FK_DANHGIASANPHAM_SANPHAM" FromRole="SANPHAM" ToRole="DANHGIASANPHAM" />
@@ -177,6 +194,13 @@
     <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TINTUC">
+    <Key>
+      <PropertyRef Name="MaTin" />
+    </Key>
+    <Property Name="MaTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_CTDONHANG_DONDATHANG">
     <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
@@ -286,6 +310,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DONDATHANG_MaGiamGia">
+    <End Role="MaGiamGia" Type="Self.MaGiamGia" Multiplicity="0..1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaGiamGia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="IDMaGiam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SANPHAM_LOAISP">
     <End Role="LOAISP" Type="Self.LOAISP" Multiplicity="0..1" />
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
@@ -308,11 +344,13 @@
     <EntitySet Name="HINHTHUCTHANHTOANs" EntityType="Self.HINHTHUCTHANHTOAN" />
     <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
     <EntitySet Name="LOAISPs" EntityType="Self.LOAISP" />
+    <EntitySet Name="MaGiamGias" EntityType="Self.MaGiamGia" />
     <EntitySet Name="MENUs" EntityType="Self.MENU" />
     <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
     <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
     <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TINTUCs" EntityType="Self.TINTUC" />
     <AssociationSet Name="FK_CTDONHANG_DONDATHANG" Association="Self.FK_CTDONHANG_DONDATHANG">
       <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
       <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
@@ -347,6 +385,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_DONDATHANG_HINHTHUCTHANHTOAN" Association="Self.FK_DONDATHANG_HINHTHUCTHANHTOAN">
       <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOANs" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHANG_MaGiamGia" Association="Self.FK_DONDATHANG_MaGiamGia">
+      <End Role="MaGiamGia" EntitySet="MaGiamGias" />
       <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_LOAISP" Association="Self.FK_SANPHAM_LOAISP">

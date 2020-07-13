@@ -2,14 +2,7 @@
 @{
     Layout = null;
 }
-
-@*<div class="form">
-
-        <img src="http://www.androidpolice.com/wp-content/themes/ap2/ap_resize/ap_resize.php?src=http%3A%2F%2Fwww.androidpolice.com%2Fwp-content%2Fuploads%2F2015%2F10%2Fnexus2cee_Search-Thumb-150x150.png&w=150&h=150&zc=3">
-        <a id="btnsign" class="btn btn-default btn-block" href="@Url.Action("SignIn", new { type = "Google" })">Sign in</a>
-        <a href="https://accounts.google.com/signup/v2/webcreateaccount?service=accountsettings&continue=https%3A%2F%2Fmyaccount.google.com%2F%3Futm_source%3DOGB%26tab%3Dwk%26utm_medium%3Dact%26pli%3D1%26nlr%3D1&dsh=S1695244983%3A1574951629060826&gmb=exp&biz=false&flowName=GlifWebSignIn&flowEntry=SignUp">Create account</a>
-
-    </div>*@
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
 <head>
     <title>Login V4</title>
@@ -20,7 +13,6 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
@@ -35,16 +27,21 @@
     <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
     <link href="~/Content/util.css" rel="stylesheet" />
-    <link href="~/Content/Loginnew1.css" rel="stylesheet" />
+    <link href="~/Content/Loginnew.css" rel="stylesheet" />
     <!--===============================================================================================-->
+    <style>
+        body {
+            font-family: 'Roboto';
+        }
+    </style>
 </head>
 <script>
     function validateLogin() {
         var x = document.forms["myForm"]["TenDN"].value;
         var y = document.forms["myForm"]["MatKhau"].value;
 
-        if (x == "" || y == "") {
-            alert("You need enter Email and Password");
+        if (x == "" || y == "") {   
+            alert("Bạn cần nhập tên đăng nhập và mật khẩu");
             return false;
         }
     }
@@ -54,28 +51,48 @@
     }
 
 </script>
-
+<style>
+    .alert-danger {
+        margin-top:3px;
+        font-size:12px;
+        position: relative;
+        padding: .50rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+</style>
 <body>
     <form action="/Account/Login" method="post" name="myForm">
         <div class="limiter">
-            <div class="container-login100" style="background-image: url('../../Images/bg-01.jpg');">
+            <div class="container-login100">
                 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                     <span class="login100-form-title p-b-49">
                         Đăng Nhập
                     </span>
-
                     <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
                         <span class="label-input100">Tên đăng nhập</span>
-                        <input class="input100" id="TenDN" type="text" name="TenDN" placeholder="Tên đăng nhập">
+                        <input class="input100" id="TenDN" type="text" name="TenDN" placeholder="Tên đăng nhập" required>
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
-
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <span class="label-input100">Mật khẩu</span>
-                        <input class="input100" id="MatKhau" type="password" name="MatKhau" placeholder="Mật khẩu">
+                        <input class="input100" id="MatKhau" type="password" name="MatKhau" placeholder="Mật khẩu" required>
                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
+                    @if (ViewBag.error != null)
+                    {
+                    <div class="alert alert-danger" role="alert">
+                        Tên đăng nhập hoặc mật khẩu không đúng!
+                    </div>
+                    }
+                    else
+                    {
 
+                    }
                     <div class="text-right p-t-8 p-b-31">
 
                     </div>
@@ -89,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class="txt1 text-center p-t-54 p-b-20">
+                    <div class="txt1 text-center p-t-54 p-b-20" style="padding-top:30px;">
                         <span>
                             Hoặc đăng nhập sử dụng
                         </span>
@@ -108,6 +125,8 @@
                             <img src="~/Images/google-plus.png" />
                         </a>
                     </div>
+                    <a style="text-decoration:none; font-size:15px; float:right" id="emailHelp" class="form-text text-muted" href="@Url.Action("Quenmatkhau","Home")"><small style="color:cornflowerblue;">Quên mật khẩu</small></a>
+
                 </div>
             </div>
         </div>
@@ -130,3 +149,4 @@
     <!--===============================================================================================-->
     <script src="~/Scripts/main.js"></script>
 </body>
+

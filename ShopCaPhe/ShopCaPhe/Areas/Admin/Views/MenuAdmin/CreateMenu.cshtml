@@ -63,17 +63,17 @@
 
                             <td>
 
-                                <input type="text" name="MenuName" placeholder="@ShopCaPhe.Language.Resource.imenuname">
+                                <input type="text" name="MenuName" placeholder="@ShopCaPhe.Language.Resource.imenuname" required>
 
                             </td>
                             <td>
 
-                                <input type="text" name="ParentID" placeholder="@ShopCaPhe.Language.Resource.iidmenu">
+                                <input type="text" name="ParentID" placeholder="@ShopCaPhe.Language.Resource.iidmenu" required>
 
                             </td>
                             <td>
 
-                                <input type="text" name="Link" placeholder="@ShopCaPhe.Language.Resource.ilinkmenu">
+                                <input type="text" name="Link" placeholder="@ShopCaPhe.Language.Resource.ilinkmenu" required>
 
                             </td>
 
@@ -86,9 +86,7 @@
 
 
                     <div>
-                        <a href="@Url.Action("CreateMenu","MenuAdmin")" class="btncreate">@ShopCaPhe.Language.Resource.iback</a>
-
-                        <input type="submit" class="btncreate" onclick="return validateCreate()" style="width:130px; background-color:#17aa67" value="@ShopCaPhe.Language.Resource.icreate" />
+                        <button type="button" style=" width:30%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">@ShopCaPhe.Language.Resource.iback</button> <input type="submit" style=" width:30%" class="btn btn-primary" value="Lưu" />
 
 
 

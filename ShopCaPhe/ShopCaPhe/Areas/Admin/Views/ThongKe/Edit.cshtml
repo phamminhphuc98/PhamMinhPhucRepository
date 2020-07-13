@@ -8,6 +8,8 @@
 }
 @*<link href="~/Content/EditAdmins.css" rel="stylesheet" />*@
 <link href="~/Content/GioHang.css" rel="stylesheet" />
+<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
+
 <style>
 
 
@@ -24,7 +26,9 @@
         cursor: pointer;
         color: white;
     }
-
+    table {
+        border: 1px solid #e9e9e9
+    }
     .content-edit input {
         width: 40%;
     }
@@ -32,84 +36,97 @@
     .dropdown {
         width: 40%;
     }
-    .right{
-        width:40%;
-        float:left;
+
+    .right {
+        width: 40%;
+        float: left;
     }
-    .left{
-        float:left;
-        width:40%;
-            
+
+    .left {
+        float: left;
+        width: 40%;
     }
-    .baotrum{
-        width:100%;
-        display:block;
+
+    .baotrum {
+        width: 100%;
+        display: block;
     }
-    .content-edit{
-        width:100%;
-        display:block;
-        height:400px;
+
+    form {
+        background-color: white;
+        padding: 10px;
+    }
+
+    .content-edit {
+        width: 100%;
+        display: block;
+        height: 400px;
+    }
+
+    table > tbody > tr > td {
+        padding: 0px;
+        font-weight: normal;
     }
 </style>
+<h4 style="font-family:serif">@ShopCaPhe.Language.Resource.iedit</h4>
+
 @using (Html.BeginForm())
 {
-<div class="content-edit">
+    <div class="content-edit">
 
-    @Html.AntiForgeryToken()
-    <h4 style="font-family:serif">@ShopCaPhe.Language.Resource.iedit</h4>
-    <hr />
-    <h5>Thông tin người nhận</h5>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.SoDH)
+        @Html.AntiForgeryToken()
+            
+        <h5>Thông tin người nhận</h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SoDH)
 
 
-    @Html.EditorFor(model => model.SoDH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })        @Html.ValidationMessageFor(model => model.SoDH, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.SoDH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })        @Html.ValidationMessageFor(model => model.SoDH, "", new { @class = "text-danger" })
 
-    @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-    @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+        @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
 
-    <div class="right">
-        <label class="control-label">Tên người nhận</label>   @Html.EditorFor(model => model.TenNguoiNhan, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="right">
+            <label class="control-label">Tên người nhận</label>   @Html.EditorFor(model => model.TenNguoiNhan, new { htmlAttributes = new { @class = "form-control" } })
 
-        @Html.ValidationMessageFor(model => model.TenNguoiNhan, "", new { @class = "text-danger" })
-        <label class="control-label">Ngày đặt hàng</label>
-        @Html.EditorFor(model => model.NgayDH, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.NgayDH, "", new { @class = "text-danger" })
-        <label class="control-label">Ngày giao hàng</label>
-        @Html.EditorFor(model => model.Ngaygiaohang, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Ngaygiaohang, "", new { @class = "text-danger" })
-        <label class="control-label">Địa chỉ</label>
-        @Html.EditorFor(model => model.DiaChiNhan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenNguoiNhan, "", new { @class = "text-danger" } )
+            <label class="control-label">Ngày đặt hàng</label>
+            @Html.EditorFor(model => model.NgayDH, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayDH, "", new { @class = "text-danger" })
+            <label class="control-label">Ngày giao hàng</label>
+            @Html.EditorFor(model => model.Ngaygiaohang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ngaygiaohang, "", new { @class = "text-danger" })
+            <label class="control-label">Địa chỉ</label>
+            @Html.EditorFor(model => model.DiaChiNhan, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="left">
+            <label class="control-label">Trạng Thái</label>
+            <select class="dropdown editdropdown" name="trangthai">
+                <option value="@Model.TrangThai">@Model.TrangThai</option>
+                <option value="Đã giao">Đã giao</option>
+                <option value="Đang giao">Đang giao</option>
+            </select>
+            <label class="control-label">Điện thoại</label>
+            @Html.EditorFor(model => model.DienThoaiNhan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DienThoaiNhan, "", new { @class = "text-danger" })
+            <label class="control-label">Trị Giá</label>
+            @Html.EditorFor(model => model.TriGia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TriGia, "", new { @class = "text-danger" })
+        </div>
     </div>
-    <div class="left">
-        <label class="control-label">Trạng Thái</label>
-        <select class="dropdown editdropdown" name="trangthai">
-            <option value="@Model.TrangThai">@Model.TrangThai</option>
-            <option value="Đã giao">Đã giao</option>
-            <option value="Đang giao">Đang giao</option>
-        </select>
-        <label class="control-label">Điện thoại</label>
-        @Html.EditorFor(model => model.DienThoaiNhan, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.DienThoaiNhan, "", new { @class = "text-danger" })
-        <label class="control-label">Trị Giá</label>
-        @Html.EditorFor(model => model.TriGia, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.TriGia, "", new { @class = "text-danger" })
-    </div>
-</div>
 
-    <br />
-    <div class="Cart-info">
+        <div class="Cart-info" style="margin-top:-6%">
         <h5>Thông tin hóa đơn</h5>
         <hr />
 
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Tên Sản Phẩm</td>
-                    <td>Hình Ảnh</td>
-                    <td>Số Lượng</td>
-                    <td>Thành Tiền</td>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Hình Ảnh</th>
+                    <th>Số Lượng</th>
+                    <th>Thành Tiền</th>
 
                 </tr>
             </thead>
@@ -130,8 +147,6 @@
         </table>
 
     </div>
-    <a href="@Url.Action("IndexAdmin","AdminCRUD")" class="btncreate">@ShopCaPhe.Language.Resource.iback</a>
+    <button type="button" style=" width:13%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">Quay về</button> <input type="submit" style=" width:13%" class="btn btn-primary" value="Lưu" />
 
-    <input type="submit" class="btncreate" style="width:130px; background-color:#17aa67" value="@ShopCaPhe.Language.Resource.isave" />
-
-    }
+}

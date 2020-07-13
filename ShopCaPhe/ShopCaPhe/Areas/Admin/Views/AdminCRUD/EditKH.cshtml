@@ -1,0 +1,81 @@
+﻿@model ShopCaPhe.Models.KHACHHANG
+
+@{
+    /**/
+
+    ViewBag.Title = "EditKH";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    #exampleInputPassword1 {
+        width: 100%;
+    }
+
+    .btncreate {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+</style>
+
+<h2>EditKH</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="exampleInputEmail1">Họ tên khách khàng</label>
+        <input type="text" name="HoTenKH" class="form-control" id="exampleInputEmail1" style="width:100%" aria-describedby="emailHelp" value="@Model.HoTenKH" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Địa chỉ KH</label>
+        <input type="text" name="DiaChiKH" class="form-control" id="exampleInputPassword1" value="@Model.DiaChiKH" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Điện thoại KH</label>
+        <input type="text" name="DienThoaiKH"
+               class="form-control"
+               id="exampleInputPassword1"
+               pattern="(\+84|0)\d{9,10}"
+               title="Nhập số điện thoại từ 10 đến 11 số" value="@Model.DienThoaiKH"/>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Tên đăng nhập</label>
+        <input type="text" name="TenDN" max="30" class="form-control" id="exampleInputPassword1" value="@Model.TenDN" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Ngày sinh</label>
+        <input type="text" name="NgaySinh" class="form-control" id="exampleInputPassword1"  value="@Model.NgaySinh" required>
+        <small id="emailHelp" class="form-text text-muted">Year/Month/Day</small>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Giới tính</label>
+        <input  name="GioiTinh" maxlength="4" class="form-control" id="exampleInputPassword1" value="@Model.GioiTinh" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Email</label>
+        <input type="email" name="Email" class="form-control" id="exampleInputPassword1" value="@Model.Email" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Loại đăng nhập</label>
+        <input type="text" name="LoaiDN" class="form-control" id="exampleInputPassword1" value="@Model.LoaiDN" required>
+    </div>
+    <div class="form-group">
+        <input type="text" style="visibility:hidden" name="MaKH" class="form-control" id="exampleInputPassword1" value="@Model.MaKH">
+    </div>
+    <div class="form-group">
+        <input type="text" style="visibility:hidden" name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
+    </div>
+    <button type="button" style="margin-top:-17%; width:13%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">Quay về</button> <input type="submit" style="margin-top:-17%; width:13%" class="btn btn-primary" value="Lưu" />
+
+
+
+}

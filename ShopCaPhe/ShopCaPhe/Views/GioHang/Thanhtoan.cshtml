@@ -12,23 +12,29 @@
         <tbody>
             <tr>
                 <td>Tên người nhận</td>
-                <td><input type="text" name="tennguoinhan" id="tennguoinhan" value="@dg.HoTenKH" /></td>
+                <td><input type="text" name="tennguoinhan" id="tennguoinhan" value="@dg.HoTenKH" required/></td>
             </tr>
             <tr>
                 <td>Địa chỉ nhận hàng</td>
-                <td><input type="text" name="diachinhanhang" id="diachinhanhang" value="@dg.DiaChiKH" /></td>
+                <td><input type="text" name="diachinhanhang" id="diachinhanhang" value="@dg.DiaChiKH" required /></td>
             </tr>
             <tr>
                 <td>Điện thoại nhận hàng</td>
-                <td><input type="text" name="dienthoainhanhang" id="dienthoainhanhang" value="@dg.DienThoaiKH" /></td>
+                <td>
+                    <input type="text" name="dienthoainhanhang"
+                           class="form-control"
+                           id="exampleInputPassword1"
+                           pattern="(\+84|0)\d{9,10}"
+                           title="Nhập số điện thoại từ 10 đến 11 số" value="@dg.DienThoaiKH" required />
+                </td>
             </tr>
             <tr>
                 <td>Giới tính</td>
-                <td><input type="text" id="gioitinh" name="gioitinh" value="@dg.GioiTinh" /></td>
+                <td><input type="text" id="gioitinh" name="gioitinh" value="@dg.GioiTinh" required/></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" id="email" name="email" value="@dg.Email" /></td>
+                <td><input style="padding: 5px; font-size: 17px;border: none; width:100%; border-bottom: 1px solid #dfe2d7;" type="email" id="email" name="email" value="@dg.Email" required /></td>
             </tr>
             <tr>
                 <td>Ngày nhận hàng</td>

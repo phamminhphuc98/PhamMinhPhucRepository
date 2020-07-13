@@ -1,0 +1,77 @@
+﻿@using ShopCaPhe.Models
+@model ShopCaPhe.Models.TINTUC
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
+}
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<style>
+    .tintuc{
+        font-family:Roboto;
+        font-size:15pt;
+        padding:10px 20px;
+        line-height:30px;
+    }
+    .imgtintuc {
+        border: none;
+        max-width: 100%;
+        height: auto;
+        margin:0px 7%;
+    }
+    .ultintuc li{
+        list-style:circle;
+    }
+   .buoc{
+       font-style:italic;
+   }
+</style>
+<form class="tintuc">
+    <h3>Cà phê Trứng – nét văn hóa độc đáo chỉ có ở Việt Nam</h3>
+    <p>@Model.NoiDung</p>
+    <img class="imgtintuc" src="~/Images/caphetrung-dacsan-caphe_1024x1024.jpg" />
+    <p style="margin:0px 35%">Cà phê trứng - hình sưu tầm</p>
+
+    <br />
+    <br />
+    <h3>
+        Cà phê Trứng có từ lúc nào?
+    </h3>
+    <p>
+        Không có tài liệu nào ghi lại cà phê Trứng có từ lúc nào, chỉ biết rằng, đến năm 1946, cả thế giới đã được biết về món nước đặc biệt này. Vào thời đó, có một thanh niên tên Nguyễn Văn Giảng, cậu ta làm việc ở khách sạn Metropole Hà Nội với vị trí pha chế cà phê. Tuy nhiên, ở thời đó, cà phê pha khá loãng và được pha chung với sữa. Có một lần do vì thiếu sữa nên cậu lấy trứng thay thế, ấy vậy mà thức uống đó được rất nhiều thực khách đánh giá cao và yêu mến. Sau một thời gian, cậu quyết định nghỉ việc ở khách sạn và tự mở quán cà phê cho riêng mình với cà phê Trứng làm món chủ đạo. Hiện giờ, quán cà phê của cậu vẫn còn ở Hà Nội và được kế thừa bởi con trai cậu Giảng.
+    </p>
+    <img class="imgtintuc" src="~/Images/caphegiang-caphetrung-hanoi_b8a7e3d79ab44ad8ad393ef0e64bc625_1024x1024.jpg" />
+    <p style="margin:0px 35%">Cà phê Giảng Hà Nội - hình sưu tầm</p>
+    <p>
+        Được kế thừa công thức từ bố, đây là nơi bạn có thể thưởng thức một tách cà phê Trứng chính tông giữa lòng Hà Nội. Nơi đây đã trở thành một địa điểm phải có trong place list của các du khách khi đặt chân xuống vùng đất này.
+
+        Theo Vnexpress, ông Mark Lowerson – người điều hành Street Eats Hanoi cho biết “Đa số khách của tôi đều thích đồ uống này. Khi mô tả về nó, họ không thể tưởng tượng được trứng kết hợp với cà phê như thế nào. Và tôi chưa từng thấy ai lại không thích món này.”
+    </p>
+    <h3>Cà phê Trứng – cappuccino của Việt Nam</h3>
+    <p>
+        Nếu nước Ý có cappuccino làm say mê lòng người thì cà phê Trứng của Việt Nam cũng không kém cạnh.
+
+        Không chỉ khác ở cách pha chế mà cách thưởng thức cũng rất thật đặc biệt. Bạn phải nghiêng cốc sao cho bạn có thể thưởng thức cả trứng và cà phê. Người ta bảo nhau rằng, cà phê Trứng có đến “tam vị và nhị mùi”,  sự kết hợp hoàn hảo của cà phê, trứng và sữa đặc, làm cho người uống có những cảm xúc vị giác khác lạ hoàn toàn so với những ly cà phê khác trên thế giới, mang đậm nét đặc trưng của thủ đô Hà Nội cổ kính.
+
+        Mỗi quán đều có một cách pha chế riêng cho mình về tách cà phê Trứng, tuy nhiên, vẫn 3 nguyên liệu chủ chốt là cà phê, trứng và sữa đặc.
+
+        Cách pha cà phê Trứng bạn có thể thử tại nhà
+    </p>
+    <p>
+        Chuẩn bị:
+    </p>
+    <ul class="ultintuc">
+        <li>Bột cà phê</li>
+        <li>Trứng gà ta</li>
+        <li>Sữa đặc</li>
+        <li>Nước sôi</li>
+    </ul>
+    <p class="buoc">Bước 1: Pha cà phê</p>
+    <p>Với 17-20gr cà phê cho vào phin, lắc nhẹ để cà phê dàn phẳng và ấn chặt nắp xuống. Đổ 15ml nước sôi vào mặt phin, đợi khoảng 30 giây, thì lại cho tiếp nước sôi ngập ¾ phin, đậy nắp và đợi cà phê được chắt lọc ra.</p>
+    <p class="buoc">Bước 2: Đánh trứng gà ta</p>
+    <p>Đập trứng gà ra, vợt lấy lòng đỏ trứng và bỏ lòng trắng. Cho vào lòng đỏ vào ly và dùng máy đánh để trứng bông lên, thời gian đánh khoảng 5-7 phút.</p>
+    <p class="buoc">Bước 3: Hoàn thành</p>
+    <p>
+        Cà phê sau khi đã chắt lọc xong, bạn cho cà phê vào ly có trứng đã đánh bông ra. Sau đó cho thêm xíu sữa đặc, và thưởng thức.
+        Ngoài công thức truyền thống này, bạn có thể thêm vào xíu mật ong hoặc bơ để tăng vị.
+    </p>
+</form>

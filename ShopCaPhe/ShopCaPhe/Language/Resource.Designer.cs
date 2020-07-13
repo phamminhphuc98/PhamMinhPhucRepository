@@ -151,6 +151,15 @@ namespace ShopCaPhe.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Manage.
+        /// </summary>
+        public static string icustomer {
+            get {
+                return ResourceManager.GetString("icustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string idelete {
@@ -210,6 +219,15 @@ namespace ShopCaPhe.Language {
         public static string ieditmenu {
             get {
                 return ResourceManager.GetString("ieditmenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Manage.
+        /// </summary>
+        public static string ievent {
+            get {
+                return ResourceManager.GetString("ievent", resourceCulture);
             }
         }
         
@@ -354,6 +372,15 @@ namespace ShopCaPhe.Language {
         public static string isave {
             get {
                 return ResourceManager.GetString("isave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string isearch {
+            get {
+                return ResourceManager.GetString("isearch", resourceCulture);
             }
         }
         

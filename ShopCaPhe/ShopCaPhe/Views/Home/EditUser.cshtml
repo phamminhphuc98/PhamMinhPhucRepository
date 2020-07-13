@@ -1,0 +1,66 @@
+﻿@model ShopCaPhe.Models.KHACHHANG
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
+}
+<link href="~/Content/EditUser1.css" rel="stylesheet" />
+<style>
+    input[type=text] {
+        color: black;
+    }
+</style>
+<style>
+    #exampleInputPassword1 {
+        width: 100%;
+    }
+
+    .btncreate {
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-style-5" style="height:900px; border:solid 1px black">
+    <form>
+        <h3 style="margin:0 7%">Cập nhập thông tin khách hàng</h3>
+        <br />
+
+        <fieldset>
+            <label for="job">Họ tên khách hàng:</label>
+            <input type="text" name="HoTenKH" class="form-control" id="exampleInputEmail1" style="width:100%; color:black" aria-describedby="emailHelp" value="@Model.HoTenKH" required>
+            <label for="job">Địa chỉ:</label>
+            <input style="color:black" type="text" name="DiaChiKH" class="form-control" id="exampleInputPassword1" value="@Model.DiaChiKH" required>
+            <label for="job">Số điện thoại:</label>
+            <input type="text" style="color:black" name="DienThoaiKH"
+                   class="form-control"
+                   id="exampleInputPassword1"
+                   pattern="(\+84|0)\d{9,10}"
+                   title="Nhập số điện thoại từ 10 đến 11 số" value="@Model.DienThoaiKH" />
+            <label for="job">Ngày sinh:</label>
+            <input style="color:black" type="text" name="NgaySinh" class="form-control" id="exampleInputPassword1" value="@Model.NgaySinh" required>
+            <label for="job">Giới tính:</label>
+            <input style="color:black" name="GioiTinh" type="text" maxlength="4" class="form-control" id="exampleInputPassword1" value="@Model.GioiTinh" required>
+            <label for="job">Email:</label>
+            <input style="color:black" type="email" name="Email" class="form-control" id="exampleInputPassword1" value="@Model.Email" required>
+            <label for="job">Mật khẩu:</label>
+            <input  type="password" disabled name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
+            <a style="text-decoration:none; float:right" id="emailHelp" class="form-text text-muted" href="@Url.Action("Doimatkhau","Home", new {id = Model.MaKH} )"><small style="color:cornflowerblue;">Đổi mật khẩu</small></a>
+        </fieldset>
+        <input style="width:50%" type="submit" value="Lưu" />
+
+        <input type="text" style="visibility:hidden" name="MaKH" class="form-control" id="exampleInputPassword1" value="@Model.MaKH">
+        <input type="text" style="visibility:hidden" name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
+        <input type="text" style="visibility:hidden" name="TenDN" max="30" class="form-control" id="exampleInputPassword1" value="@Model.TenDN" required>
+    </form>
+</div>}

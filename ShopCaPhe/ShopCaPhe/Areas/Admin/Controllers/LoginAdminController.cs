@@ -5,8 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopCaPhe.Models;
 
-namespace ShopCaPhe.Areas.Admin.Controllers
-{
+namespace ShopCaPhe.Areas.Admin.Controllerslocthe{
     public class LoginAdminController : Controller
     {
         CàPheEntities db = new CàPheEntities();

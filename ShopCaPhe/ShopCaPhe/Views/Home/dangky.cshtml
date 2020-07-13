@@ -37,6 +37,7 @@ else
 
 
 </script>
+<title>DangKy</title>
 <div class="container">
 
     <div class="card bg-light">
@@ -50,13 +51,13 @@ else
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="HoTenKH" class="form-control" placeholder="Họ & Tên " type="text">
+                    <input name="HoTenKH" class="form-control" placeholder="Họ & Tên " type="text" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="Email" class="form-control" placeholder="Email" type="email">
+                    <input  name="Email"  class="form-control" placeholder="Email" type="email" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -68,7 +69,12 @@ else
                         <option value="2">+198</option>
                         <option value="3">+84</option>
                     </select>
-                    <input name="DienThoaiKH" class="form-control" placeholder="Số điện thoại" type="text">
+                    <input type="text" name="DienThoaiKH"
+                           class="form-control"
+                           id="exampleInputPassword1"
+                           placeholder="Số điện thoại"
+                           pattern="(\+84|0)\d{9,10}"
+                           title="Nhập số điện thoại từ 10 đến 11 số" value="" />
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
@@ -80,13 +86,13 @@ else
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input name="TenDN" class="form-control" placeholder="Tên đăng nhập" type="text">
+                    <input name="TenDN" class="form-control" placeholder="Tên đăng nhập" type="text" required>
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input name="MatKhau" class="form-control" placeholder="Mật khẩu" type="password">
+                    <input name="MatKhau" class="form-control" placeholder="Mật khẩu" type="password" required>
                 </div> <!-- form-group// -->
 
                 <div class="form-group">

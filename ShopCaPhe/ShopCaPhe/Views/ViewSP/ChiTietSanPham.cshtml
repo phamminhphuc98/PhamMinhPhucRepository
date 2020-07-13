@@ -4,8 +4,7 @@
     ViewBag.Title = "ChiTietSanPham";
     Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
 }
-<link href="~/Content/ChiTietSanPham.css" rel="stylesheet" />
-
+<link href="~/Content/ChiTietSanPham1.css" rel="stylesheet" />
 <div class="Product-info">
     <div class="info-left">
         <img src="~/Images/@Model.HinhMinhHoa" />
@@ -45,6 +44,27 @@
         </div>
     </div>
 
+
+</div>
+<h3>SẢN PHẨM LIÊN QUAN</h3>
+<div class="splienquan">
+    <ul style="padding:0px">
+        @foreach (var dg in (IList<SANPHAM>)ViewData["lstSP"])
+        {
+            <li>
+                <a style="text-decoration:none" href="/ViewSP/ChiTietSanPham?MaSP=@dg.MaSP&Maloai=@dg.MaLoai">
+                    <img width="100%" src="~/Images/@dg.HinhMinhHoa" />
+                    <div id="tenlienquan">@dg.TenSP </div>
+                    <div id="tieude">
+                        @dg.LOAISP.TenLoai
+                    </div>
+                    <span style="color:black" id="agia">@string.Format("{0:0,0}", dg.DonGia)đ</span>
+                </a>
+            </li>
+         
+        }
+
+    </ul>
 </div>
 <div class="Tab">
     <a id="Tab-R">Đánh Giá</a>
@@ -56,28 +76,29 @@
     <h3 style="font-size:18px">@Model.MoTa</h3>
 </div>
 <div class="Tab-Review" id="idReview">
-        <div>
-            <div style="display:none" class="new-Cmt">
-                <div class="review-list">
-                    <div class="author">
-                        <b></b>
-                        Bình Luận Ngày: <span></span>
-                    </div>
-                    <div class="rating-review">
-                    </div>
-                    <div class="text-review">
+    <div>
+        <div style="display:none" class="new-Cmt">
+            <div class="review-list">
+                <div class="author">
+                    <b></b>
+                    Bình Luận Ngày: <span></span>
+                </div>
+                <div class="rating-review">
+                </div>
+                <div class="text-review">
 
-                    </div>
                 </div>
             </div>
-            @foreach (var dg in (IList<DANHGIASANPHAM>)ViewData["listDG"])
-            {
-                <div class="review-list">
-                    <div class="author">
-                        <b>@dg.HoTenKH</b>
-                        Bình Luận Ngày: <span>@string.Format("{0:dd/MM/yyyy}", dg.ThoiGian)</span>
-                    </div>
-                    <div class="rating-review">
+        </div>
+
+        @foreach (var dg in (IList<DANHGIASANPHAM>)ViewData["listDG"])
+        {
+            <div class="review-list">
+                <div class="author">
+                    <b>@dg.HoTenKH</b>
+                    Bình Luận Ngày: <span>@string.Format("{0:dd/MM/yyyy}", dg.ThoiGian)</span>
+                </div>
+                <div class="rating-review">
                     @if (dg.DiemDG == 1)
                     {
                         <i class="fa fa-star star" aria-hidden="true"></i>
@@ -123,7 +144,9 @@
                     @dg.BinhLuan
                 </div>
             </div>
+
         }
+
     </div>
     <h3>Viết Đánh Giá</h3>
     <form class="frm-Rating" id="frmRating">
@@ -167,12 +190,12 @@
             alert("Bạn cần đăng nhập đê bình luận về sản phẩm này !")
             window.location.href = "/Account/LoginSSO";
         }
-       
-        }
+
+    }
 
 
 
-    
+
     //$('#btntimkiem').on('click', function () {
     //    var giatrinhapvao = $('#searchcontent').val();
     //    alert("yeu");

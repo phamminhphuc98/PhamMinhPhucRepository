@@ -231,4 +231,14 @@
   <data name="ibillmanage" xml:space="preserve">
     <value>Bill Manage</value>
   </data>
+  <data name="icustomer" xml:space="preserve">
+    <value>Customer Manage</value>
+    <comment> </comment>
+  </data>
+  <data name="ievent" xml:space="preserve">
+    <value>Event Manage</value>
+  </data>
+  <data name="isearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

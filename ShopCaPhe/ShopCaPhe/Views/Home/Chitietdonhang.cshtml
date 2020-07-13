@@ -1,0 +1,104 @@
+﻿@using ShopCaPhe.Models
+@model ShopCaPhe.Models.DONDATHANG
+@{
+    ViewBag.Title = "Chitietdonhang";
+    Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/GioHang.css" rel="stylesheet" />
+<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    .form-inline .form-group {
+        margin-right: 10px;
+    }
+
+    .well-primary {
+        color: rgb(255, 255, 255);
+        background-color: rgb(66, 139, 202);
+        border-color: rgb(53, 126, 189);
+    }
+
+    .glyphicon {
+        margin-right: 5px;
+    }
+
+    .col-xs-3 {
+        width: 30%;
+    }
+    form {
+        border: 1px solid gray;
+        border-radius: 1%;
+        width: 100%;
+        padding: 1% 2%;
+        background-color: white;
+    }
+</style>
+<form>
+    <h2>Thông Tin Khách Hàng</h2>
+    <div class="container" style="margin:0; padding:0">
+        <div class="col-md-10">
+            <div style="color:black" id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="well well-sm well-primary" style="color:black; background-color:white;border-color:black">
+                        <div class="row">
+                            <div class="col-xs-3" style="font-size:20px">Địa chỉ người nhận</div>
+                            <div class="col-xs-3  bold" style="font-size:20px">Hình thức giao hàng</div>
+                            <div class="col-xs-3" style="font-size:20px">Hình thức thanh toán</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">@Model.TenNguoiNhan</div>
+                            <div class="col-xs-3 bold">Phí vận chuyển: 10.000đ</div>
+                            <div class="col-xs-3">Thanh toán tiền mặt khi nhận hàng</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">Địa chỉ:@Model.DiaChiNhan</div>
+                            <div class="col-xs-3 bold">Email:@Model.EmailNhanHang</div>
+                            <div class="col-xs-3"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">Điện thoại:@Model.DienThoaiNhan</div>
+                            <div class="col-xs-3 bold"></div>
+                            <div class="col-xs-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Thông Tin Đơn Hàng</h2>
+    <div class="donhang">
+        <div class="Cart-info">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Hình Ảnh</th>
+                        <th>Số Lượng</th>
+                        <th>Thành Tiền</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dg in (IList<CTDONHANG>)ViewData["listdh"])
+                    {
+                        <tr>
+                            <td>@dg.SANPHAM.TenSP</td>
+                            <td><a href="~/ViewSP/ChiTietSanPham?MaSp=@dg.MaSP"><img src="~/Images/@dg.SANPHAM.HinhMinhHoa" /></a></td>
+                            <td><p>@dg.SoLuong</p></td>
+                            <td><span id="DonGia"> @string.Format("{0:0,0}", dg.ThanhTien)</span></td>
+                        </tr>
+
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</form>

@@ -55,7 +55,7 @@
                     <tr>
                         <td>
 
-                            <input type="text" name="TenLoaiSP" placeholder="@ShopCaPhe.Language.Resource.icategoryname">
+                            <input type="text" name="TenLoaiSP" placeholder="@ShopCaPhe.Language.Resource.icategoryname" required>
 
                         </td>
 
@@ -67,15 +67,11 @@
 
 
 
-                <div>
-                    <a href="@Url.Action("IndexAdmin","AdminCRUD")" class="btncreate">@ShopCaPhe.Language.Resource.iback</a>
-
-                    <input type="submit" class="btncreate" onclick="return validateCreate()" style="width:130px; background-color:#17aa67" value="@ShopCaPhe.Language.Resource.icreate" />
+                    <button type="button" style=" width:30%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">@ShopCaPhe.Language.Resource.iback</button> <input type="submit" style=" width:30%" class="btn btn-primary" value="Lưu" />
 
 
 
-                </div>
-            </div>
+          </div>
 
             <table class="table table-bordered">
                 <thead>

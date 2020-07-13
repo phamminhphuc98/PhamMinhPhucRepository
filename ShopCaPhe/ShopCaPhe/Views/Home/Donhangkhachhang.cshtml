@@ -1,0 +1,43 @@
+﻿@using ShopCaPhe.Models
+@model List<DONDATHANG>
+@{
+                /**/
+
+                ViewBag.Title = "Donhangkhachhang";
+                Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
+}
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<style>
+    table {
+        font-size: 13px;
+        font-family: Roboto;
+    }
+
+</style>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Mã đơn hàng</th>
+            <th scope="col">Ngày mua</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Trạng thái đơn hàng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody style=" border-top: 1px solid #dee2e6">
+            <tr>
+                <th scope="row"><a href="@Url.Action("Chitietdonhang","Home",new { id = item.SoDH })" style="color:blue">@item.SoDH</a></th>
+                <td>@item.NgayDH</td>
+                <td>@item.TenNguoiNhan</td>
+                <td>@item.DienThoaiNhan</td>
+                <td>@item.EmailNhanHang</td>
+                <td>@item.TriGia đ</td>
+                <td>@item.TrangThai</td>
+            </tr>
+        </tbody>
+    }
+</table>

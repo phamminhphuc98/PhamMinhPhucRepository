@@ -39,6 +39,7 @@
             alert("Vui lòng điền đầy đủ thông tin sách trước khi tạo !");
             return false;
         }
+
     }
 
 </script>
@@ -56,13 +57,13 @@
                 <tr>
                     <td>
 
-                        <input type="text" name="name" placeholder="@ShopCaPhe.Language.Resource.iproductname">
+                        <input type="text" name="name" placeholder="@ShopCaPhe.Language.Resource.iproductname" required>
 
                     </td>
 
                 </tr>
                 <tr>
-                    <td><input type="text" name="mota" placeholder="@ShopCaPhe.Language.Resource.imota" /></td>
+                    <td><input type="text" name="mota" placeholder="@ShopCaPhe.Language.Resource.imota" required /></td>
                 </tr>
                 <tr>
                     <td>
@@ -77,7 +78,7 @@
                     <td>@Html.DropDownList("pub", (IEnumerable<SelectListItem>)ViewBag.PubList, "Chọn nhà xuất bản", new { @class = "dropdown" })</td>
                 </tr>*@
                 <tr>
-                    <td><input type="text" name="gia" placeholder="@ShopCaPhe.Language.Resource.iprice" /></td>
+                    <td><input type="number"  name="gia"  min="10000" max="100000000" placeholder="@ShopCaPhe.Language.Resource.iprice"   required  /></td>
                 </tr>
                 <tr>
                     <td>
@@ -91,7 +92,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="SL" placeholder="@ShopCaPhe.Language.Resource.isumary" /></td>
+                    <td><input type="number" name="SL" min="0" placeholder="@ShopCaPhe.Language.Resource.isumary"  required/></td>
                 </tr>
                 <tr>
                     <td>
@@ -167,7 +168,7 @@
             <br />
             <br />
             <div class="from-inline">
-                <input type="button" id="btnUpload" value="@ShopCaPhe.Language.Resource.ichooseimg" class="btn_Choose" />
+                <input type="button" id="btnUpload" value="@ShopCaPhe.Language.Resource.ichooseimg" class="btn_Choose"  required/>
 
                 <input style="visibility:hidden" type="text" name="picture" id="picture" />
                 <input style="visibility:hidden" type="file" id="fileUpload" name="fileUpload" />

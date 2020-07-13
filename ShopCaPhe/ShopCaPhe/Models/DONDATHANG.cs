@@ -31,10 +31,14 @@ namespace ShopCaPhe.Models
         public string DienThoaiNhan { get; set; }
         public Nullable<int> MaHTTT { get; set; }
         public Nullable<int> MaHTGH { get; set; }
+        public string EmailNhanHang { get; set; }
+        public Nullable<int> IDMaGiam { get; set; }
+        public string MaGiam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDONHANG> CTDONHANGs { get; set; }
         public virtual HINHTHUCGIAOHANG HINHTHUCGIAOHANG { get; set; }
         public virtual HINHTHUCTHANHTOAN HINHTHUCTHANHTOAN { get; set; }
+        public virtual MaGiamGia MaGiamGia { get; set; }
     }
 }

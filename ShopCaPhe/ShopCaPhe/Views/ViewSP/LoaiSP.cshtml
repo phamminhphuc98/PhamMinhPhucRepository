@@ -1,13 +1,51 @@
 ﻿@using ShopCaPhe.Models
 @model List<SANPHAM>
-
-
 @{
     ViewBag.Title = "LoaiSP";
     Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
 }
-<link href="~/Content/Index1.css" rel="stylesheet" />
+<style>
+    ul li {
+        color: black;
+    }
+
+    .itemnav {
+        margin-right: 10px;
+    }
+
+    .badge {
+        margin-top: 10px;
+    }
+</style>
+<link href="~/Content/Index.css" rel="stylesheet" />
 <div class="title">
+    <ul style="color:black; margin-right:30% " class="nav justify-content-center">
+        <li style="padding:9px; float:left" class=" nav-item">
+            <span>Chọn mức giá:</span>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=1">Dưới 2 trằm nghìn</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=2">Từ 2 trăm nghìn - 5 trăm nghìn</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=3">Từ 5 trăm nghìn - 1 triệu</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=4 ">Trên 1 triệu</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=5">Mới</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=6">Bán chạy</a>
+        </li>
+        <li class="nav-item itemnav">
+            <a class="badge badge-primary" href="/Home/Loctheogia?a=7">HOT</a>
+        </li>
+
+    </ul>
 
     <h6 style="text-transform:uppercase"><strong>Sản Phẩm @ViewBag.name</strong></h6>    <div class="search-container">
         <form action="/Home/timkiem">
@@ -15,7 +53,6 @@
             <button id="btntimkiem" type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
-
     <hr>
 </div>
 <form action="/Home/Index" method="post">
@@ -25,6 +62,34 @@
         {
             //i++;
             <div id="sanpham">
+                @if (item.YeuThich >= ViewBag.sum * 10 / 100)
+                {
+                    <div class="arrow-up" style="border-top: 90px solid #ff6461;">
+                        <div class="inside" style="position:relative;">
+                            <span>Bán chạy</span>
+                        </div>
+                    </div>
+
+                }
+                else if (item.YeuThich >= ViewBag.sum * 8 / 100)
+                {
+
+                    <div class="arrow-up" style="border-top: 90px solid #2ab989;">
+                        <div class="inside" style="position:relative;top: -85px;left: -39px;">
+                            <span><img width="100%" style="width:25px" src="~/Images/flat.png" />HOT</span>
+                        </div>
+                    </div>
+
+                }
+                else if (item.YeuThich == 0)
+                {
+                    <div class="arrow-up" style="border-top: 90px solid #00bcd4;">
+                        <div class="inside" style="position:relative;top: -73px;left: -45px;">
+                            <span>NEW</span>
+                        </div>
+                    </div>
+                }
+
                 <div id="anhbia"><img src="~/Images/@item.HinhMinhHoa" /></div>
                 <div id="tensach">@item.TenSP</div>
                 <div id="tieude">
@@ -32,14 +97,15 @@
                 </div>
                 <div class="price">
                     <span id="agia">@string.Format("{0:0,0}", item.DonGia)đ</span>
-
                 </div>
                 <div class="tooltip-content">
                     <ul>
                         <li class="tooltip-li li1"><a id="txtmua" onclick="DatHang(@item.MaSP)"><i class="fa fa-shopping-basket"></i></a></li>
                         <li class="tooltip-li li2"><a id="myBtn" onclick="Poppup(@item.MaSP)"><i class="fa fa-exchange"></i></a></li>
-                        <li class="tooltip-li li3"><a href="~/ViewSP/ChiTietSanPham?MaSP=@item.MaSP"><i class="fa fa-eye" style="color:black"></i></a></li>
+                        <li class="tooltip-li li3"><a href="/ViewSP/ChiTietSanPham?MaSP=@item.MaSP&Maloai=@item.MaLoai" class="sub-menu"><i class="fa fa-eye" style="color:black"></i></a></li>
                     </ul>
+                    <span style="visibility:hidden" id="username">@Session["username"]</span>
+                    <span style="visibility:hidden" id="username1">@Session["Email"]</span>
 
                 </div>
             </div>

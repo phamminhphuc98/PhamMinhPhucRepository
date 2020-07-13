@@ -68,6 +68,9 @@
     <Property Name="DienThoaiNhan" Type="varchar" MaxLength="15" />
     <Property Name="MaHTTT" Type="int" />
     <Property Name="MaHTGH" Type="int" />
+    <Property Name="EmailNhanHang" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDMaGiam" Type="int" />
+    <Property Name="MaGiam" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="HINHTHUCGIAOHANG">
     <Key>
@@ -96,6 +99,7 @@
     <Property Name="NgaySinh" Type="smalldatetime" />
     <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="LoaiDN" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="LOAISP">
     <Key>
@@ -103,6 +107,16 @@
     </Key>
     <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenLoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MaGiamGia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Magiam" Type="varchar" MaxLength="50" />
+    <Property Name="GiaTri" Type="int" />
+    <Property Name="Ngayhethan" Type="date" />
+    <Property Name="soluong" Type="int" />
   </EntityType>
   <EntityType Name="MENU">
     <Key>
@@ -147,6 +161,7 @@
     <Property Name="NgayChinhSua" Type="datetime" />
     <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
     <Property Name="SoLuong" Type="int" />
+    <Property Name="YeuThich" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -157,6 +172,13 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TINTUC">
+    <Key>
+      <PropertyRef Name="MaTin" />
+    </Key>
+    <Property Name="MaTin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiDung" Type="ntext" />
   </EntityType>
   <Association Name="FK_CTDONHANG_DONDATHANG">
     <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
@@ -266,6 +288,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DONDATHANG_MaGiamGia">
+    <End Role="MaGiamGia" Type="Self.MaGiamGia" Multiplicity="0..1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaGiamGia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="IDMaGiam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SANPHAM_LOAISP">
     <End Role="LOAISP" Type="Self.LOAISP" Multiplicity="0..1" />
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
@@ -288,11 +322,13 @@
     <EntitySet Name="HINHTHUCTHANHTOAN" EntityType="Self.HINHTHUCTHANHTOAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAISP" EntityType="Self.LOAISP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaGiamGia" EntityType="Self.MaGiamGia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TINTUC" EntityType="Self.TINTUC" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CTDONHANG_DONDATHANG" Association="Self.FK_CTDONHANG_DONDATHANG">
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
       <End Role="CTDONHANG" EntitySet="CTDONHANG" />
@@ -327,6 +363,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_DONDATHANG_HINHTHUCTHANHTOAN" Association="Self.FK_DONDATHANG_HINHTHUCTHANHTOAN">
       <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOAN" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHANG_MaGiamGia" Association="Self.FK_DONDATHANG_MaGiamGia">
+      <End Role="MaGiamGia" EntitySet="MaGiamGia" />
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_LOAISP" Association="Self.FK_SANPHAM_LOAISP">

@@ -97,7 +97,6 @@ C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Ent
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Newtonsoft.Json.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Web.Helpers.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Web.Mvc.dll
@@ -116,7 +115,6 @@ C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Sys
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Web.WebPages.xml
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Web.WebPages.Razor.xml
-C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Newtonsoft.Json.xml
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Antlr3.Runtime.pdb
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Microsoft.AspNet.TelemetryCorrelation.xml
@@ -153,3 +151,13 @@ C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\vi-
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\obj\Debug\vi-vn\ShopCaPhe.resources.dll
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\obj\Debug\ShopCaPhe.Language.Resource.resources
 C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\obj\Debug\ShopCaPhe.Language.Resource.vi-vn.resources
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Rotativa.dll
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Newtonsoft.Json.dll
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\Newtonsoft.Json.xml
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\ClosedXML.dll
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\DocumentFormat.OpenXml.dll
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\ExcelNumberFormat.dll
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\ClosedXML.pdb
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\ClosedXML.xml
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\DocumentFormat.OpenXml.xml
+C:\Users\Phuc NE\Desktop\Thầy Tài\Shop_CaPhe_DOCN\ShopCaPhe\ShopCaPhe\bin\ExcelNumberFormat.xml
