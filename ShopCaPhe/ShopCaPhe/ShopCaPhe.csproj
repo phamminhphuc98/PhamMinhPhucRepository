@@ -421,7 +421,7 @@
     <Content Include="Areas\Admin\Views\LoginAdmin\LoginAdmin.cshtml" />
     <Content Include="Scripts\Chitiet.js" />
     <Content Include="Scripts\closefbchat.js" />
-    <Content Include="Scripts\GioHang1.js" />
+    <Content Include="Scripts\GioHang.js" />
     <Content Include="Scripts\jquery-1.8.0.min.js" />
     <Content Include="Areas\Admin\Views\AdminCRUD\CreateKhachHang.cshtml" />
     <Content Include="Areas\Admin\Views\AdminCRUD\EditKH.cshtml" />

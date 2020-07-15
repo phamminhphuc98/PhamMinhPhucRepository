@@ -20,8 +20,10 @@ namespace ShopCaPhe.Areas.Admin.Controllers
     {
 
         CàPheEntities db = new CàPheEntities();
-        public ActionResult ThongKe(int? iyear, int? imonth)
+        public ActionResult ThongKe(int? iyear, int? imonth, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             List<int> ItemMonth = new List<int>();
             for (int i = 1; i < 13; i++)
             {
@@ -88,8 +90,10 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             return PartialView(ViewBag.DS);
 
         }
-        public ActionResult HoaDon(int? year, int? month, int? day)
+        public ActionResult HoaDon(int? year, int? month, int? day, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             List<int> ItemDay = new List<int>();
             for (int i = 1; i < 31; i++)
             {
@@ -190,8 +194,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             return View(links.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Hoadonngay(int? day, int? year, int? month)
+        public ActionResult Hoadonngay(int? day, int? year, int? month, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             List<int> ItemDay = new List<int>();
             for (int i = 1; i < 31; i++)
             {
@@ -222,8 +230,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Hoadonthang(int? year, int? month)
+        public ActionResult Hoadonthang(int? year, int? month, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             List<int> ItemDay = new List<int>();
             for (int i = 1; i < 31; i++)
             {
@@ -252,8 +264,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             return View(donhang);
         }
 
-        public ActionResult Hoadonnam(int? year)
+        public ActionResult Hoadonnam(int? year, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             List<int> ItemDay = new List<int>();
             for (int i = 1; i < 31; i++)
             {
@@ -280,9 +296,10 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             List<DONDATHANG> donhang = db.DONDATHANGs.Where(n => n.NgayDH.Value.Year == year).ToList();
             return View(donhang);
         }
-        public ActionResult EditHoaDon(int? sohd)
+        public ActionResult EditHoaDon(int? sohd, string language)
         {
-
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             //CTDONHANG dh = db.CTDONHANGs.Find(sohd);
             List<CTDONHANG> donhang = db.CTDONHANGs.Where(n => n.SoDH == sohd).ToList();
             //ViewData["datadh"] = db.SANPHAMs.Where(n => n.MaSP == dh.MaSP );
@@ -292,8 +309,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             //Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 
@@ -324,15 +345,23 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             if (dh.TrangThai == "Đã giao")
             {
                 trangthaithuc = "Đang giao";
+                dh.TrangThai = trangthaithuc;
+                dh.Ngaygiaohang = null;
+                db.Entry(dh).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("HoaDon");
+
             }
             else
             {
                 trangthaithuc = "Đã giao";
+                dh.TrangThai = trangthaithuc;
+                dh.Ngaygiaohang = DateTime.Parse(DateTime.Now.ToString());
+                db.Entry(dh).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("HoaDon");
+
             }
-            dh.TrangThai = trangthaithuc;
-            db.Entry(dh).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("HoaDon");
         }
         public ActionResult ExportPDF()
         {
@@ -374,6 +403,8 @@ namespace ShopCaPhe.Areas.Admin.Controllers
                 }
 
             }
+            dt.Rows.Add("");
+            dt.Rows.Add("Thống kê doanh thu tháng "+Session["month"]+" năm "+Session["year"]+"");
             dt.Rows.Add("Tổng tiền:", tong2);
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -381,11 +412,9 @@ namespace ShopCaPhe.Areas.Admin.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DoanhThu.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Doanh Thu Thang "+ Session["month"]+"/" + Session["year"]+".xlsx");
                 }
             }
         }
     }
 }
-
-

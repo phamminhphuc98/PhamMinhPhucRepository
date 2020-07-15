@@ -1,37 +1,42 @@
 ﻿$(document).ready(function () {
     DatHang = function (MaSP) {
         var SL = $('#txtSL').val();
-        if (isNaN(SL) == true) {
-            SL = 1;
-        }
-        var id = $('#username').html();
-        var id1 = $('#username1').html();
-        if (id == "" && id1=="") {
-            alert("Bạn cần đăng nhập để thực hiện chức năng này !");
-            location.href = "/Account/LoginSSO";
+        if (SL < 0) {
+            alert("Số lượng sản phẩm không được âm, Vui lòng nhập lại số lượng sản phẩm");
         }
         else {
-            $.ajax({
-                url: "/GioHang/ThemGiohang",
-                data: { iMaSP: MaSP, SL: SL },
-                type: "POST",
-                success: function (result) {
-                    var TongSL = 0;
-                    var TongTien = 0;
+            if (isNaN(SL) == true) {
+                SL = 1;
+            }
+            var id = $('#username').html();
+            var id1 = $('#username1').html();
+            if (id == "" && id1 == "") {
+                alert("Bạn cần đăng nhập để thực hiện chức năng này !");
+                location.href = "/Account/LoginSSO";
+            }
+            else {
+                $.ajax({
+                    url: "/GioHang/ThemGiohang",
+                    data: { iMaSP: MaSP, SL: SL },
+                    type: "POST",
+                    success: function (result) {
+                        var TongSL = 0;
+                        var TongTien = 0;
 
-                    $.each(result, function (i, item) {
-                        TongSL += item.SoLuongMua;
-                        TongTien += item.TongTien
-                    });
-                    //$('#cart > a  > span').html(TongSL + " Sản Phẩm - " + TongTien + "VND")
-                    $('.rightz > span').html("<p style='color:red; display:inline-block;padding:0;margin:0;'>" + TongSL + "</p> Sản phẩm - <p style='color:red;display:inline-block;padding:0;margin:0;'>" + TongTien + "</p> VNĐ")
+                        $.each(result, function (i, item) {
+                            TongSL += item.SoLuongMua;
+                            TongTien += item.TongTien
+                        });
+                        //$('#cart > a  > span').html(TongSL + " Sản Phẩm - " + TongTien + "VND")
+                        $('.rightz > span').html("<p style='color:red; display:inline-block;padding:0;margin:0;'>" + TongSL + "</p> Sản phẩm - <p style='color:red;display:inline-block;padding:0;margin:0;'>" + TongTien + "</p> VNĐ")
 
-                    alert('Đặt Hàng Thành Công!!')
+                        alert('Đặt Hàng Thành Công!!')
 
 
-                }
-            });
-            return false;
+                    }
+                });
+                return false;
+            }
         }
     };
 

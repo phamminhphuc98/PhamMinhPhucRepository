@@ -5,26 +5,32 @@
     Layout = "~/Views/Shared/_LayoutCaPhe.cshtml";
 }
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-<style>
-    .tintuc{
-        font-family:Roboto;
-        font-size:15pt;
-        padding:10px 20px;
-        line-height:30px;
-    }
-    .imgtintuc {
-        border: none;
-        max-width: 100%;
-        height: auto;
-        margin:0px 7%;
-    }
-    .ultintuc li{
-        list-style:circle;
-    }
-   .buoc{
-       font-style:italic;
-   }
-</style>
+
+<head>
+    <style>
+        .tintuc {
+            font-family: Roboto;
+            font-size: 15pt;
+            padding: 10px 20px;
+            line-height: 30px;
+        }
+
+        .imgtintuc {
+            border: none;
+            max-width: 100%;
+            height: auto;
+            margin: 0px 7%;
+        }
+
+        .ultintuc li {
+            list-style: circle;
+        }
+
+        .buoc {
+            font-style: italic;
+        }
+    </style>
+</head>
 <form class="tintuc">
     <h3>Cà phê Trứng – nét văn hóa độc đáo chỉ có ở Việt Nam</h3>
     <p>@Model.NoiDung</p>

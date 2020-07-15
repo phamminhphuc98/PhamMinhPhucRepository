@@ -67,7 +67,7 @@
     <Property Name="SoDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaKH" Type="Int32" Nullable="false" />
     <Property Name="NgayDH" Type="DateTime" Precision="0" />
-    <Property Name="Ngaygiaohang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaygiaohang" Type="DateTime" Precision="0" />
     <Property Name="TriGia" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="TenNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

@@ -130,7 +130,6 @@ namespace ShopCaPhe.Controllers
         {
             int x = 0;
             string danggiao = "Đang giao";
-            string ngaygiao = "2019/12/1";
             if (Session["Email"] == null && Session["username"] == null)
             {
                 return RedirectToAction("LoginSSO", "Account");
@@ -161,7 +160,6 @@ namespace ShopCaPhe.Controllers
                         db.Entry(user);
                         donhang.MaKH = int.Parse(Session["makh"].ToString());
                         donhang.NgayDH = DateTime.Parse(DateTime.Now.ToString());
-                        donhang.Ngaygiaohang = ngaygiao;
                         donhang.TriGia = decimal.Parse(Session["TongTien"].ToString());
                         donhang.TrangThai = danggiao;
                         donhang.TenNguoiNhan = frm["tennguoinhan"];
@@ -209,7 +207,6 @@ namespace ShopCaPhe.Controllers
                         db.Entry(user);
                         donhang.MaKH = int.Parse(Session["MaKH"].ToString());
                         donhang.NgayDH = DateTime.Parse(DateTime.Now.ToString());
-                        donhang.Ngaygiaohang = ngaygiao;
                         donhang.TriGia = decimal.Parse(Session["TongTien"].ToString());
                         donhang.TrangThai = danggiao;
                         donhang.TenNguoiNhan = frm["tennguoinhan"];
@@ -260,7 +257,6 @@ namespace ShopCaPhe.Controllers
                     {
                         donhang.MaKH = int.Parse(Session["makh"].ToString());
                         donhang.NgayDH = DateTime.Parse(DateTime.Now.ToString());
-                        donhang.Ngaygiaohang = ngaygiao;
                         donhang.TriGia = decimal.Parse(Session["TongTien"].ToString());
                         donhang.TrangThai = danggiao;
                         donhang.TenNguoiNhan = frm["tennguoinhan"];
@@ -308,7 +304,6 @@ namespace ShopCaPhe.Controllers
                     {
                         donhang.MaKH = int.Parse(Session["MaKH"].ToString());
                         donhang.NgayDH = DateTime.Parse(DateTime.Now.ToString());
-                        donhang.Ngaygiaohang = ngaygiao;
                         donhang.TriGia = decimal.Parse(Session["TongTien"].ToString());
                         donhang.TrangThai = danggiao;
                         donhang.TenNguoiNhan = frm["tennguoinhan"];

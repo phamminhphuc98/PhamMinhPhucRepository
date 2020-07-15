@@ -54,13 +54,20 @@
             <label for="job">Email:</label>
             <input style="color:black" type="email" name="Email" class="form-control" id="exampleInputPassword1" value="@Model.Email" required>
             <label for="job">Mật khẩu:</label>
-            <input  type="password" disabled name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
-            <a style="text-decoration:none; float:right" id="emailHelp" class="form-text text-muted" href="@Url.Action("Doimatkhau","Home", new {id = Model.MaKH} )"><small style="color:cornflowerblue;">Đổi mật khẩu</small></a>
+            <input type="password" disabled name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
+            @if (Session["username"] != null)
+            {
+                <p></p>
+            }
+            else
+            {
+                <a style="text-decoration:none; float:right" id="emailHelp" class="form-text text-muted" href="@Url.Action("Doimatkhau","Home", new {id = Model.MaKH} )"><small style="color:cornflowerblue;">Đổi mật khẩu</small></a>
+
+            }
         </fieldset>
         <input style="width:50%" type="submit" value="Lưu" />
-
         <input type="text" style="visibility:hidden" name="MaKH" class="form-control" id="exampleInputPassword1" value="@Model.MaKH">
         <input type="text" style="visibility:hidden" name="MatKhau" class="form-control" id="exampleInputPassword1" value="@Model.MatKhau">
-        <input type="text" style="visibility:hidden" name="TenDN" max="30" class="form-control" id="exampleInputPassword1" value="@Model.TenDN" required>
+        <input type="text" style="visibility:hidden" name="TenDN" max="30" class="form-control" id="exampleInputPassword1" value="@Model.TenDN" >
     </form>
 </div>}

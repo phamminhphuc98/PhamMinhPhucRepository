@@ -65,7 +65,7 @@
           <Property Name="SoDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaKH" Type="int" Nullable="false" />
           <Property Name="NgayDH" Type="date" />
-          <Property Name="Ngaygiaohang" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngaygiaohang" Type="date" />
           <Property Name="TriGia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
           <Property Name="TenNguoiNhan" Type="nvarchar" MaxLength="50" />
@@ -101,7 +101,7 @@
           <Property Name="DienThoaiKH" Type="varchar" MaxLength="11" />
           <Property Name="TenDN" Type="nvarchar" MaxLength="50" />
           <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
-          <Property Name="NgaySinh" Type="smalldatetime" />
+          <Property Name="NgaySinh" Type="date" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="LoaiDN" Type="nvarchar" MaxLength="50" />
@@ -451,7 +451,7 @@
           <Property Name="SoDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaKH" Type="Int32" Nullable="false" />
           <Property Name="NgayDH" Type="DateTime" Precision="0" />
-          <Property Name="Ngaygiaohang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngaygiaohang" Type="DateTime" Precision="0" />
           <Property Name="TriGia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenNguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

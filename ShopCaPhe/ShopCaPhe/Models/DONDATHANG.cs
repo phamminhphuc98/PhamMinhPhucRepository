@@ -23,7 +23,7 @@ namespace ShopCaPhe.Models
         public int SoDH { get; set; }
         public int MaKH { get; set; }
         public Nullable<System.DateTime> NgayDH { get; set; }
-        public string Ngaygiaohang { get; set; }
+        public Nullable<System.DateTime> Ngaygiaohang { get; set; }
         public Nullable<decimal> TriGia { get; set; }
         public string TrangThai { get; set; }
         public string TenNguoiNhan { get; set; }

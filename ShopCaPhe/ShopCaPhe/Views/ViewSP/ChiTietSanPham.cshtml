@@ -26,9 +26,7 @@
             <p style="border-bottom: 1px dashed #e2e2e2"></p>
             <h3><strong>Trạng thái:</strong></h3><h5>@Model.TrangThai</h5>
             <div id="SL">
-                <button class="btn-Tru" onclick="Tru()">-</button>
-                <input type="text" id="txtSL" value="1" />
-                <button class="btn-Cong" onclick="Cong()">+</button>
+                <input type="number" id="txtSL" value="1" min="1" required  />
             </div>
             <input type="button" id="btn-Cart" value="Thêm Vào Giỏ Hàng" onclick="DatHang(@Model.MaSP)" />
         </div>

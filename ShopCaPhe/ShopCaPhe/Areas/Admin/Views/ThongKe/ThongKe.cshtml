@@ -58,7 +58,7 @@
         }
     </select>
     <br />
-    <input type="submit" style=" width:15% ; margin: 20px 0px" onclick="Thongke()" class="btn btn-primary" value="Xem hóa đơn" />
+    <input type="submit" style=" width:15% ; margin: 20px 0px" onclick="Thongke()" class="btn btn-primary" value="Xem thống kê" />
     <br>
     <h4>Tổng Tiền Tháng  @Session["month"] Năm @Session["year"] Là: <span style="color:red">@string.Format("{0:0,0}", Session["TongDG"])</span>vnđ </h4>
     <hr />
@@ -91,7 +91,7 @@
                         <td>@string.Format("{0:0,0}", item.TriGia)</td>
                         <td>@item.NgayDH</td>
                         <td>@item.Ngaygiaohang</td>
-                        <td>@item.TrangThai</td>
+                        <td><a style="width:100%; padding:5px" href="#" class="badge badge-success">@item.TrangThai</a></td>
                         <td>
                             <button type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
                                 <a href="@Url.Action("EditHoaDon","ThongKe", new { sohd = item.SoDH })">
@@ -99,6 +99,7 @@
                                 </a>
                             </button>
                         </td>
+
                     </tr>
                 }
             </tbody>
@@ -106,7 +107,7 @@
     </form>
     @using (Html.BeginForm("Export", "ThongKe", FormMethod.Post))
     {
-        <input type="submit" onclick="excel()" value="Export Excel" class="button" style=" height:30px; background-color: #008CBA;color: black;} " />
+       <input  type="submit" style=" width:15% ; float:right; margin: 20px 0px" onclick="excel()" class="btn btn-primary" value=" Xuất file thống kê" />
     }
 </div>
 

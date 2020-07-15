@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using ShopCaPhe.Models;
@@ -12,8 +14,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
     {
         CàPheEntities db = new CàPheEntities();
         // GET: Admin/Menu
-        public ActionResult CreateMenu()
+        public ActionResult CreateMenu( string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             List<MENU> mn = db.MENUs.ToList();
 
             var f = from s in db.LOAISPs select s;
@@ -32,8 +38,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("CreateMenu", "MenuAdmin");
         }
-        public ActionResult DeleteMenu(int? id)
+        public ActionResult DeleteMenu(int? id, string language)
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+
             MENU mn = db.MENUs.Find(id);
             return View(mn);
         }
@@ -47,9 +57,10 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("CreateMenu");
         }
-        public ActionResult EditMenu(int? id)
+        public ActionResult EditMenu(int? id, string language)
         {
-            // List<Category> lis = db.Categories.ToList();
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 
             MENU sp = db.MENUs.Find(id);
             return View(sp);

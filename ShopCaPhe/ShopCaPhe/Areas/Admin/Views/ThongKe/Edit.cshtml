@@ -3,15 +3,21 @@
 @{
     /**/
 
+    /**/
+
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 @*<link href="~/Content/EditAdmins.css" rel="stylesheet" />*@
-<link href="~/Content/GioHang.css" rel="stylesheet" />
-<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
-
+<link href="~/Content/EditAdmins1.css" rel="stylesheet" />
 <style>
+    .frmauthor {
+        font-family: serif;
+    }
 
+    .form-control {
+        width: 50%;
+    }
 
     .btncreate {
         background-color: red;
@@ -26,127 +32,106 @@
         cursor: pointer;
         color: white;
     }
+
     table {
-        border: 1px solid #e9e9e9
-    }
-    .content-edit input {
-        width: 40%;
+        text-align: center;
     }
 
-    .dropdown {
-        width: 40%;
+    th {
+        color: white;
+        background-color: #17aa67;
     }
 
-    .right {
-        width: 40%;
-        float: left;
-    }
-
-    .left {
-        float: left;
-        width: 40%;
-    }
-
-    .baotrum {
-        width: 100%;
+    .editdropdown {
+        color: #696969;
+        font-size: 14px;
+        padding: 10px;
         display: block;
+        width: 132%;
+        margin-left: -54px;
+        border: 2px solid #ced4da;
+        border-radius: 4px;
     }
 
     form {
         background-color: white;
-        padding: 10px;
-    }
-
-    .content-edit {
-        width: 100%;
-        display: block;
-        height: 400px;
-    }
-
-    table > tbody > tr > td {
-        padding: 0px;
-        font-weight: normal;
+        padding: 15px 40px;
     }
 </style>
 <h4 style="font-family:serif">@ShopCaPhe.Language.Resource.iedit</h4>
-
 @using (Html.BeginForm())
 {
-    <div class="content-edit">
 
-        @Html.AntiForgeryToken()
-            
-        <h5>Thông tin người nhận</h5>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.SoDH)
-
-
-        @Html.EditorFor(model => model.SoDH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })        @Html.ValidationMessageFor(model => model.SoDH, "", new { @class = "text-danger" })
-
-        @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
-        @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
-
-        <div class="right">
-            <label class="control-label">Tên người nhận</label>   @Html.EditorFor(model => model.TenNguoiNhan, new { htmlAttributes = new { @class = "form-control" } })
-
-            @Html.ValidationMessageFor(model => model.TenNguoiNhan, "", new { @class = "text-danger" } )
-            <label class="control-label">Ngày đặt hàng</label>
-            @Html.EditorFor(model => model.NgayDH, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NgayDH, "", new { @class = "text-danger" })
-            <label class="control-label">Ngày giao hàng</label>
-            @Html.EditorFor(model => model.Ngaygiaohang, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Ngaygiaohang, "", new { @class = "text-danger" })
-            <label class="control-label">Địa chỉ</label>
-            @Html.EditorFor(model => model.DiaChiNhan, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.AntiForgeryToken()
+    <h5>Thông tin người nhận</h5>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip01">Tên người nhận</label>
+            <input type="text" class="form-control" id="TenSP" name="TenNguoiNhan" value="@Model.TenNguoiNhan" required>
         </div>
-        <div class="left">
-            <label class="control-label">Trạng Thái</label>
-            <select class="dropdown editdropdown" name="trangthai">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip02">Trị giá đơn hàng</label>
+            <input type="number" class="form-control" id="TriGia" min="10000" max="100000000" name="TriGia" value="@Model.TriGia" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Ngày đặt hàng</label>
+            <input type="text" class="form-control" id="NgayDH" name="NgayDH" value="@Model.NgayDH" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Ngày giao hàng</label>
+            <input type="text" class="form-control" id="YeuThich" name="Ngaygiaohang" value="@Model.Ngaygiaohang" required>
+        </div>
+    </div>
+    <hr />
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Đơn vị tính</label>
+            <select class="form-control" name="TrangThai" required>
                 <option value="@Model.TrangThai">@Model.TrangThai</option>
                 <option value="Đã giao">Đã giao</option>
                 <option value="Đang giao">Đang giao</option>
             </select>
-            <label class="control-label">Điện thoại</label>
-            @Html.EditorFor(model => model.DienThoaiNhan, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DienThoaiNhan, "", new { @class = "text-danger" })
-            <label class="control-label">Trị Giá</label>
-            @Html.EditorFor(model => model.TriGia, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TriGia, "", new { @class = "text-danger" })
         </div>
     </div>
-
-        <div class="Cart-info" style="margin-top:-6%">
-        <h5>Thông tin hóa đơn</h5>
-        <hr />
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Hình Ảnh</th>
-                    <th>Số Lượng</th>
-                    <th>Thành Tiền</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var dg in (IList<CTDONHANG>)ViewData["listdh"])
-                {
-                    <tr>
-                        <td>@dg.SANPHAM.TenSP</td>
-                        <td><a href="~/ViewSP/ChiTietSanPham?MaSp=@dg.MaSP"><img src="~/Images/@dg.SANPHAM.HinhMinhHoa" /></a></td>
-                        <td><p>@dg.SoLuong</p></td>
-                        <td><span id="DonGia"> @string.Format("{0:0,0}", dg.ThanhTien)</span></td>
-                    </tr>
-
-
-                }
-
-            </tbody>
-        </table>
-
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Địa chỉ</label>
+            <input type="text" class="form-control" id="SoLuong" name="DiaChiNhan" value="@Model.DiaChiNhan" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Điện thoại</label>
+            <input type="text" class="form-control" id="YeuThich" min="0" name="DienThoaiNhan" value="@Model.DienThoaiNhan" required>
+        </div>
     </div>
+    <hr />
+    <h5>Thông tin hóa đơn</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Hình Ảnh</th>
+                <th>Số Lượng</th>
+                <th>Thành Tiền</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dg in (IList<CTDONHANG>)ViewData["listdh"])
+            {
+                <tr>
+                    <td>@dg.SANPHAM.TenSP</td>
+                    <td><a href="~/ViewSP/ChiTietSanPham?MaSp=@dg.MaSP"><img width="20%" src="~/Images/@dg.SANPHAM.HinhMinhHoa" /></a></td>
+                    <td><p>@dg.SoLuong</p></td>
+                    <td><span id="DonGia"> @string.Format("{0:0,0}", dg.ThanhTien)</span></td>
+                </tr>
+
+
+            }
+
+        </tbody>
+    </table>
     <button type="button" style=" width:13%; background-color:gray; border:solid 1px gray" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("CreateKhachHang", "AdminCRUD")'">Quay về</button> <input type="submit" style=" width:13%" class="btn btn-primary" value="Lưu" />
 
 }

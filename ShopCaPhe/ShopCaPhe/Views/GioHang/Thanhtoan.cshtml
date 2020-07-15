@@ -11,15 +11,15 @@
     <table>
         <tbody>
             <tr>
-                <td>Tên người nhận</td>
+                <td>Tên người nhận:</td>
                 <td><input type="text" name="tennguoinhan" id="tennguoinhan" value="@dg.HoTenKH" required/></td>
             </tr>
             <tr>
-                <td>Địa chỉ nhận hàng</td>
+                <td>Địa chỉ nhận hàng:</td>
                 <td><input type="text" name="diachinhanhang" id="diachinhanhang" value="@dg.DiaChiKH" required /></td>
             </tr>
             <tr>
-                <td>Điện thoại nhận hàng</td>
+                <td>Điện thoại nhận hàng:</td>
                 <td>
                     <input type="text" name="dienthoainhanhang"
                            class="form-control"
@@ -29,23 +29,15 @@
                 </td>
             </tr>
             <tr>
-                <td>Giới tính</td>
+                <td>Giới tính:</td>
                 <td><input type="text" id="gioitinh" name="gioitinh" value="@dg.GioiTinh" required/></td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td>Email:</td>
                 <td><input style="padding: 5px; font-size: 17px;border: none; width:100%; border-bottom: 1px solid #dfe2d7;" type="email" id="email" name="email" value="@dg.Email" required /></td>
             </tr>
             <tr>
-                <td>Ngày nhận hàng</td>
-                <td>
-                    <span id="ngaynhanhang"></span>
-
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Tổng tiền cần thanh toán: @Session["TongTien"] VNĐ</td>
+                <td>Tổng tiền cần thanh toán:<span style="color:red">@Session["TongTien"]đ</span></td>
             </tr>
         </tbody>
     </table>
@@ -54,13 +46,6 @@
 
 <input onclick="return check1()" type="submit" value="Đặt hàng" />
 
-<script type="text/javascript">
-    var day = new Date();
-    var d = day.getDate() + 2;
-    var m = day.getMonth() + 1;
-    var y = day.getFullYear();
-    document.getElementById('ngaynhanhang').innerHTML = d + "/" + m + "/" + y;
-</script>
 <script>
     function check1() {
         var x = document.forms["myForm"]["tennguoinhan"].value;

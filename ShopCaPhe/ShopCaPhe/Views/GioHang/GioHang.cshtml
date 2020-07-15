@@ -45,7 +45,7 @@
                         <td><input style="" disabled type="text" value="@item.MaSP" id="MaSach" name="MaSach"></td>
                         <td><a href="~/ViewSP/ChiTietSanPham?MaSp=@item.MaSP"><img src="~/Images/@item.HinhMinhHoa" /></a></td>
                         <td>@item.TenSP</td>
-                        <td><input type="number"         id="txtSL" class="txtSLGH" value="@item.SoLuongMua" /><a class="fa fa-upload btn-Update" onclick="CapNhat(@item.MaSP)" aria-hidden="true"></a><a class="fa fa-trash-o btn-Delete" aria-hidden="true" onclick="XoaSP(@item.MaSP)"></a></td>
+                        <td><input type="number" min="1" id="txtSLGH" class="txtSLGH" value="@item.SoLuongMua" /><a class="fa fa-upload btn-Update" onclick="CapNhat(@item.MaSP)" aria-hidden="true"></a><a class="fa fa-trash-o btn-Delete" aria-hidden="true" onclick="XoaSP(@item.MaSP)"></a></td>
                         <td><span id="DonGia"> @string.Format("{0:0,0}", item.DonGia)</span></td>
                         <td>@string.Format("{0:0,0}", item.TongTien)</td>
                     </tr>
@@ -66,7 +66,7 @@
     </div>
 
 </form>
-<form action="/GioHang/MaGiam">
+<form id="magiam" action="/GioHang/MaGiam">
 
     <h3>Mã giảm giá</h3>
     <input type="text" placeholder="Nhập tại đây" name="magiam" required />
@@ -87,7 +87,7 @@
     else if (Session["null"] != null)
     {
         <div style="width:30%; margin-top:5px" class="alert alert-danger" role="alert">
-            Code không đúng.
+            Mã Code không tồn tại.
         </div>
     }
     <small style="visibility:hidden" id="soluongma">@Session["soluongma"]</small>
@@ -144,9 +144,10 @@
         else if ($('#MaSach').val() != null) {
             $('#frm-thanhtoan').css('display', 'block');
             $('#TongTien').css('display', 'none');
+            $('#magiam').css('display', 'none');
         }
         else {
-            alert("Vui lòng chọn sách cần mua trước khi thanh toán!")
+            alert("Vui lòng chọn sản phẩm cần mua trước khi thanh toán!")
         }
 
 
