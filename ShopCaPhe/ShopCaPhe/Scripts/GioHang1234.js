@@ -2,14 +2,20 @@
     DatHang = function (MaSP) {
         var SL = $('#txtSL').val();
         if (SL < 0) {
-            alert("Số lượng sản phẩm không được âm, Vui lòng nhập lại số lượng sản phẩm");
+            alert("Số lượng sản phẩm không được âm, Vui lòng nhập lại số lượng sản phẩm!");
+
+
         }
-        else {
-            if (isNaN(SL) == true) {
-                SL = 1;
+        else if ((parseInt($('#txtSL').val()) > parseInt($('#soluongton').val())))
+            {
+                alert("Số lượng mua không được vượt quá số lượng tồn kho, vui lòng nhập lại");
             }
-            var id = $('#username').html();
-            var id1 = $('#username1').html();
+            else {
+                if (isNaN(SL) == true) {
+                    SL = 1;
+                }
+                var id = $('#username').html();
+                var id1 = $('#username1').html();
             if (id == "" && id1 == "") {
                 alert("Bạn cần đăng nhập để thực hiện chức năng này !");
                 location.href = "/Account/LoginSSO";

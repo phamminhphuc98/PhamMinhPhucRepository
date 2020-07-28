@@ -39,18 +39,12 @@ namespace ShopCaPhe.Areas.Admin.Controllers
             // Set vào ViewBag
             ViewBag.ItemMonth = itemMonth;
             ViewBag.ItemYear = itemYear;
-
-            //int month = int.Parse(frmTao["thang"]);
-            //int year = int.Parse(frmTao["nam"]);
-
-
             List<DONDATHANG> ddh = db.DONDATHANGs.Where(n => n.NgayDH.Value.Month == imonth && n.NgayDH.Value.Year == iyear && n.TrangThai == "Đã giao").ToList();
             var x = db.DONDATHANGs.Where(n => n.NgayDH.Value.Month == imonth && n.NgayDH.Value.Year == iyear && n.TrangThai=="Đã giao").Sum(n => n.TriGia);
             Session["TongDG"] = x;
             Session["month"] = imonth;
             Session["year"] = iyear;
             Session["data"] = ddh;
-
             return View(ddh);
         }
         //[HttpPost]

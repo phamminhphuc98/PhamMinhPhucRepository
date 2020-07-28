@@ -31,8 +31,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="~/Scripts/numeral.js"></script>
-    <script src="~/Scripts/GioHang.js"></script>
     <script src="~/Scripts/Chitiet.js"></script>
+    <script src="~/Scripts/GioHang1234.js"></script>
+
     <script type="text/javascript">
 
         var gmap = new google.maps.LatLng(11.0282148, 106.6229131, 17);
@@ -180,10 +181,22 @@
                 @Html.Action("Menu", "Menu")
                 <li style="visibility:hidden"><a href="@Url.Action("IndexAdmin","vi-vn/Admin/AdminCRUD")">Admin</a></li>
                 <li>
-                    <a href="/GioHang/GioHang" class="rightz">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span><p style="color:red; display:inline-block;padding:0;margin:0">@Session["TongSL"] </p> Sản phẩm - <p style="color:red;display:inline-block;padding:0;margin:0">@Session["TongTien"]</p>đ</span>
-                    </a>
+                    @if (Session["GioHang"] == null)
+                    {
+                        <a href="/GioHang/GioHang" class="rightz">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span><p style="color:red; display:inline-block;padding:0;margin:0">0</p> Sản phẩm - <p style="color:red;display:inline-block;padding:0;margin:0">0</p>đ</span>
+                        </a>
+
+                    }
+                    else
+                    {
+                        <a href="/GioHang/GioHang" class="rightz">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span><p style="color:red; display:inline-block;padding:0;margin:0">@Session["TongSL"] </p> Sản phẩm - <p style="color:red;display:inline-block;padding:0;margin:0">@Session["TongTien"]</p>đ</span>
+                        </a>
+
+                    }
                 </li>
                 @if (Session["username"] != null)
                 {

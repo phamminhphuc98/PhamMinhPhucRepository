@@ -22,7 +22,7 @@
             <h3><strong>Giá bán:</strong></h3> <span>@string.Format("{0:0,0}", Model.DonGia) VND</span>
         </div>
         <div class="Cart">
-            <h3><strong>Số lượng:</strong></h3><h5>@Model.SoLuong</h5>
+            <h3><strong>Số lượng:</strong></h3><h5 id="slt">@Model.SoLuong</h5>
             <p style="border-bottom: 1px dashed #e2e2e2"></p>
             <h3><strong>Trạng thái:</strong></h3><h5>@Model.TrangThai</h5>
             <div id="SL">
@@ -174,7 +174,7 @@
         <input type="radio" name="Rating" value="5" onclick="Star(5)" checked="checked" />
         <div class="btn-frmRating">
             <div>
-                <input type="button" onclick="BinhLuan()" value="Đăng" class="btn-Rating" id="subRating" />
+             <input type="number" style="visibility:hidden" id="soluongton" value="@Model.SoLuong"/>   <input type="button" onclick="BinhLuan()" value="Đăng" class="btn-Rating" id="subRating" />
             </div>
         </div>
     </form>

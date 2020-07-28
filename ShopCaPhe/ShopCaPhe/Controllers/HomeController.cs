@@ -24,9 +24,6 @@ namespace ShopCaPhe.Controllers
         CàPheEntities db = new CàPheEntities();
         public ActionResult TrangChu()
         {
-
-
-
             return View();
         }
         public ActionResult Index()
@@ -358,11 +355,16 @@ namespace ShopCaPhe.Controllers
             DONDATHANG dh = db.DONDATHANGs.Find(id);
             return View(dh);
         }
+          [HttpGet]
         public ActionResult TinTuc()
         {
             var tintuc = (from t in db.TINTUCs select t).OrderByDescending(c => c.MaTin).FirstOrDefault();
             return View(tintuc);
 
+        }
+        public ActionResult LienHe()
+        {
+            return View();
         }
     }
 }
